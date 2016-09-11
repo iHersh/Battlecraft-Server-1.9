@@ -123,36 +123,20 @@ public class NavGame implements Listener {
 
 		case SLIME_BALL:
 			p.closeInventory();
-			teleportInWorld(p, Bukkit.getWorld("Waiting"), 0, 4, 0);
-			Bukkit.getServer().dispatchCommand(p, "oitc join Coliseum");
-			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
-					+ ChatColor.BOLD + "Minigames");
+			teleportInWorld(p, Bukkit.getWorld("Minigame"), -223, 99, 161);
+			mg(p);
 			break;
 
 		case BOW:
 			p.closeInventory();
 			teleportInWorld(p, Bukkit.getWorld("Skywars_1"), -2.5, 99, -4.5);
-			Bukkit.getServer().dispatchCommand(p, "sw join");
-			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
-					+ ChatColor.BOLD + "SkyWars");
+			sw(p);
 			break;
 
 		case CHEST:
 			p.closeInventory();
 			teleportInWorld(p, Bukkit.getWorld("world"), 2076.5, 4, 783);
             hg(p);
-			break;
-
-		case ENDER_PEARL:
-			p.closeInventory();
-			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
-					+ ChatColor.BOLD + "Hub.");
-			break;
-
-		case EXP_BOTTLE:
-			p.closeInventory();
-			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
-					+ ChatColor.BOLD + "Shop.");
 			break;
 
 		case STAINED_GLASS_PANE:
@@ -214,7 +198,23 @@ public class NavGame implements Listener {
 	}
 	
 	public void sw(final Player p) {
-		
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			public void run() {
+				Bukkit.getServer().dispatchCommand(p, "sw join");
+			}
+			}, 40);
+		p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "SkyWars");
+	}
+	
+	public void mg(final Player p) {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			public void run() {
+				Bukkit.getServer().dispatchCommand(p, "oitc join Coliseum");
+			}
+			}, 40);
+		p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "Minigames");
 	}
 
 	@EventHandler

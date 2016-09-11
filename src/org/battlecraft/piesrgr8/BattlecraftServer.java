@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.battlecraft.piesrgr8.essentials.AntiSwear;
 import org.battlecraft.piesrgr8.essentials.Commands;
+import org.battlecraft.piesrgr8.essentials.PlayerTp;
 import org.battlecraft.piesrgr8.fake.SilentJoin;
 import org.battlecraft.piesrgr8.fake.Spammer;
 import org.battlecraft.piesrgr8.hub.Hub;
@@ -140,6 +141,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Dynamicmotd(this), this);
 		pm.registerEvents(new Menus(this), this);
 		pm.registerEvents(new NavGame(this), this);
+		pm.registerEvents(new PlayerTp(this), this);
 
 		// FOR SHOP
 		pm.registerEvents(new Shop(this), this);

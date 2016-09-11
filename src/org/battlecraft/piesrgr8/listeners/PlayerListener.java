@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
+import org.battlecraft.piesrgr8.essentials.PlayerTp;
 import org.battlecraft.piesrgr8.utils.PacketUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -49,6 +50,8 @@ public class PlayerListener implements Listener {
 		final Player p = e.getPlayer();
 		e.setJoinMessage(p.getDisplayName() + ChatColor.DARK_GREEN + "" + ChatColor.ITALIC + " joined");
 		
+		PlayerTp.players.add(p.getName());
+		
 		if (plugin.getConfig().getBoolean("titleonjoin") == true) {
 		PacketUtil.onJoin(plugin, p);
 		}
@@ -91,6 +94,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 		e.setQuitMessage(p.getDisplayName() + ChatColor.DARK_RED + "" + ChatColor.ITALIC + " left");
+		PlayerTp.players.remove(p.getName());
 	}
 	
 	@EventHandler
