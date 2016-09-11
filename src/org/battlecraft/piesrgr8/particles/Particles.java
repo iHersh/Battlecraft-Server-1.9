@@ -44,7 +44,7 @@ public class Particles implements CommandExecutor{
 	public void sphere(Player p, boolean b) {
 		if (b) {
 		final Location loc = p.getLocation();
-		Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
+		Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 			double phi = 0;
 			public void run() {
 				phi += Math.PI/10;
@@ -57,7 +57,7 @@ public class Particles implements CommandExecutor{
 					ParticleEffect.DRIP_WATER.display(0, 0, 0, 1, 1, loc, 20);
 				}
 			}
-		},20, 2);
+		},1);
 	}
 }
 }

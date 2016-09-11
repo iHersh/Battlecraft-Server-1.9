@@ -71,6 +71,7 @@ public class Commands implements CommandExecutor{
 		plugin.getCommand("staff").setExecutor(new StaffCommand());
         plugin.getCommand("sword").setExecutor(new Weapons(plugin));
         plugin.getCommand("test").setExecutor(new Test(plugin));
+        plugin.getCommand("tp").setExecutor(new Teleportation());
         plugin.getCommand("unmute").setExecutor(new Unmute());
         plugin.getCommand("vs").setExecutor(new Invisibility());
         plugin.getCommand("website").setExecutor(new ClickChat(plugin));

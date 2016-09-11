@@ -32,7 +32,7 @@ public class PlayerTp implements Listener {
 			  ItemStack item = new ItemStack(Material.SKULL_ITEM);
 			  ItemMeta meta = item.getItemMeta();
 			 
-			  meta.setDisplayName("Teleport to " + playerName);
+			  meta.setDisplayName(playerName);
 			  item.setItemMeta(meta);
 			  inv.setItem(i, item);
 			}
@@ -40,18 +40,26 @@ public class PlayerTp implements Listener {
 		p.openInventory(inv);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Player Teleportation"))
 			return;
 
-		//Player p = (Player) e.getWhoClicked();
+		Player p = (Player) e.getWhoClicked();
 		e.setCancelled(true);
 
 		if (e.getCurrentItem() == null || e.getCurrentItem().getType().equals(Material.AIR)
 				|| !e.getCurrentItem().hasItemMeta()) {
 			e.setCancelled(true);
 			return;
+		}
+		 if(e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+             Player c = Bukkit.getPlayer(e.getCurrentItem().getItemMeta().getDisplayName().trim());
+             if(c!=null) {
+             
+                 p.teleport(c);
+             }
 		}
 	}
 }

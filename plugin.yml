@@ -69,6 +69,8 @@ commands:
     description: Gives a sword to defend a player!
   test:
     description: Piesrgr8 tests methods with this command!
+  tp:
+    description: Teleportation at its finest!
   unmute:
     description: Unmute players.
   vs:
@@ -185,6 +187,8 @@ permissions:
         description: This is a command for the staff team!
     bc.test:
         description: Testing a method.
+    bc.teleport:
+        description: Teleportation at its finest!
     bc.unmute:
         description: Unmute players.
     bc.vanish:

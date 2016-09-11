@@ -32,7 +32,7 @@ public class Kits implements CommandExecutor {
 				return true;
 			}
 
-			if (args.length == 0) {
+			if (args.length <= 0) {
 				p.sendMessage(
 						BattlecraftServer.prefixKit + ChatColor.GREEN + "What kind of kit would you like to use?");
 				p.sendMessage("    " + ChatColor.YELLOW + " - " + ChatColor.WHITE + "starter");
@@ -46,7 +46,7 @@ public class Kits implements CommandExecutor {
 				return true;
 			}
 
-			if (args.length == 1) {
+			if (args.length <= 1) {
 				if (args[0].equalsIgnoreCase("starter")) {
 					if (!p.hasPermission("bc.kit.starter")) {
 						p.sendMessage(BattlecraftServer.prefixKit + ChatColor.RED
@@ -63,7 +63,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -92,7 +92,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -121,7 +121,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -150,7 +150,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -179,7 +179,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -208,7 +208,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -237,7 +237,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -266,7 +266,7 @@ public class Kits implements CommandExecutor {
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
 						public void run() {
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -298,7 +298,7 @@ public class Kits implements CommandExecutor {
 								cancel();
 							}
 							Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1);
-							if (Cooldown.cooldownTime.get(p) == 0) {
+							if (Cooldown.cooldownTime.get(p) <= 0) {
 								Cooldown.cooldownTime.remove(p);
 								Cooldown.cooldownTask.remove(p);
 								cancel();
@@ -311,8 +311,7 @@ public class Kits implements CommandExecutor {
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("reset")) {
-					Cooldown.cooldownTime.remove(p);
-					Cooldown.cooldownTask.remove(p);
+					Cooldown.cooldownTime.put(p, Cooldown.cooldownTime.get(p) - 1000);
 					p.sendMessage(BattlecraftServer.prefixKit + ChatColor.GREEN + "Cooldown time has been reset!");
 					return true;
 				}

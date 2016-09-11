@@ -18,7 +18,7 @@ public class Rulebook {
 		meta.addPage("          " + ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 				+ "" + ChatColor.BOLD + "Rules" + ChatColor.GRAY + "]\n" + "\n" + ChatColor.BLACK
 				+ "Welcome to the Battlecraft Server!\n" + "\n"
-				+ "In this book, you wiil learn all of the rules of what NOT to do on the server."
+				+ "In this book, you will learn all of the rules of what NOT to do on the server."
 				+ "This ensures that you play safe and have fun on the sevrer.");
 		meta.addPage(ChatColor.RED + "Rule " + ChatColor.GOLD + "#1\n" + "\n" + ChatColor.BLACK
 				+ "Do NOT impersonate a member of staff! Disrespect to a staff member could result in a ban!");

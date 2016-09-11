@@ -11,6 +11,7 @@ import org.battlecraft.piesrgr8.essentials.PlayerTp;
 import org.battlecraft.piesrgr8.fake.SilentJoin;
 import org.battlecraft.piesrgr8.fake.Spammer;
 import org.battlecraft.piesrgr8.hub.Hub;
+import org.battlecraft.piesrgr8.hub.Launchers;
 import org.battlecraft.piesrgr8.hub.Menus;
 import org.battlecraft.piesrgr8.hub.NavGame;
 import org.battlecraft.piesrgr8.inventory.RestoreInventory;
@@ -142,6 +143,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Menus(this), this);
 		pm.registerEvents(new NavGame(this), this);
 		pm.registerEvents(new PlayerTp(this), this);
+		pm.registerEvents(new Launchers(this), this);
 
 		// FOR SHOP
 		pm.registerEvents(new Shop(this), this);
