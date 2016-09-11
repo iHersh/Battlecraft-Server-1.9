@@ -6,7 +6,9 @@ import java.util.Random;
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +25,14 @@ public class NavGame implements Listener {
 
 	public NavGame(BattlecraftServer p) {
 		this.plugin = p;
+	}
+
+	public void teleportInWorld(Player player, World world, double x, double y, double z) {
+		player.teleport(new Location(world, x, y, z));
+
+		if (world == null) {
+			player.sendMessage(BattlecraftServer.prefixHub + ChatColor.RED + "This world doesnt exist!");
+		}
 	}
 
 	public static void openGUI(Player p) {
@@ -107,72 +117,41 @@ public class NavGame implements Listener {
 		switch (e.getCurrentItem().getType()) {
 		case COBBLESTONE:
 			p.closeInventory();
-
-			Random rand = new Random();
-			int random = rand.nextInt(6);
-			if (random == 0) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft1");
-			} else if (random == 1) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft2");
-			} else if (random == 2) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft3");
-			} else if (random == 3) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft4");
-			} else if (random == 4) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft5");
-			} else if (random == 5) {
-				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft6");
-			}
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN
-					+ "" + ChatColor.BOLD + "Main PvP.");
+			teleportInWorld(p, Bukkit.getWorld("Waiting"), 0, 4, 0);
+			mainpvp(p);
 			break;
 
 		case SLIME_BALL:
 			p.closeInventory();
+			teleportInWorld(p, Bukkit.getWorld("Waiting"), 0, 4, 0);
 			Bukkit.getServer().dispatchCommand(p, "oitc join Coliseum");
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
 					+ ChatColor.BOLD + "Minigames");
 			break;
 
 		case BOW:
 			p.closeInventory();
+			teleportInWorld(p, Bukkit.getWorld("Skywars_1"), -2.5, 99, -4.5);
 			Bukkit.getServer().dispatchCommand(p, "sw join");
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
 					+ ChatColor.BOLD + "SkyWars");
 			break;
 
 		case CHEST:
 			p.closeInventory();
-
-			Random rand1 = new Random();
-			int random1 = rand1.nextInt(6);
-
-			if (random1 == 0) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 1");
-			} else if (random1 == 1) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 2");
-			} else if (random1 == 2) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 3");
-			} else if (random1 == 3) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 4");
-			} else if (random1 == 4) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 5");
-			} else if (random1 == 5) {
-				Bukkit.getServer().dispatchCommand(p, "sg join 6");
-			}
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN
-					+ "" + ChatColor.BOLD + "Survival Games");
+			teleportInWorld(p, Bukkit.getWorld("world"), 2076.5, 4, 783);
+            hg(p);
 			break;
 
 		case ENDER_PEARL:
 			p.closeInventory();
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
+			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
 					+ ChatColor.BOLD + "Hub.");
 			break;
 
 		case EXP_BOTTLE:
 			p.closeInventory();
-			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
+			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
 					+ ChatColor.BOLD + "Shop.");
 			break;
 
@@ -184,6 +163,58 @@ public class NavGame implements Listener {
 			p.closeInventory();
 			break;
 		}
+	}
+
+	public void mainpvp(final Player p) {
+		Random rand = new Random();
+		final int random = rand.nextInt(6);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			public void run() {
+				if (random == 0) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft");
+				} else if (random == 1) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft2");
+				} else if (random == 2) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft3");
+				} else if (random == 3) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft4");
+				} else if (random == 4) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft5");
+				} else if (random == 5) {
+					Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft6");
+				}
+			}
+		}, 40);
+		p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "Main PvP.");
+	}
+
+	public void hg(final Player p) {
+		Random rand = new Random();
+		final int random1 = rand.nextInt(6);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+			public void run() {
+				if (random1 == 0) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 1");
+				} else if (random1 == 1) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 2");
+				} else if (random1 == 2) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 3");
+				} else if (random1 == 3) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 4");
+				} else if (random1 == 4) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 5");
+				} else if (random1 == 5) {
+					Bukkit.getServer().dispatchCommand(p, "sg join 6");
+				}
+			}
+		}, 40);
+		p.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN + ""
+				+ ChatColor.BOLD + "Survival Games");
+	}
+	
+	public void sw(final Player p) {
+		
 	}
 
 	@EventHandler
