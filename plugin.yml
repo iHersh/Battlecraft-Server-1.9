@@ -1,0 +1,191 @@
+name: BattlecraftServer
+main: org.battlecraft.piesrgr8.BattlecraftServer
+version: 1.5, 1.9
+author: Piesrgr8
+description: This plugin is for the Battlecraft Server.
+
+commands:
+  armor:
+    description: Grants the player armor for protection.
+  ban:
+    description: Ban players.
+  bc:
+    description: The main command for the plugin.
+  death:
+    description: Kill yourself.
+  fakej:
+    description: Fake a join!
+  fakel:
+    description: Fake a leave!
+  fakeb:
+    description: Fake a ban!
+  fakek:
+    description: Fake a kick!
+  forceop:
+    description: Fake an op!
+  g0:
+    description: Set gamemode to Survival.
+  g1:
+    description: Set gamemode to Creative.
+  g2:
+    description: Set gamemode to Adventure.
+  g3:
+    description: Set gamemode to Spectator.
+  heal:
+    description: Heal yourself.
+  information:
+    description: Shows what you can do!
+  kick:
+    description: Kick players.
+  kit:
+    description: Gives kits to players.
+  maintenance:
+    description: Start maintenance.
+  menu:
+    description: Shows the menu for teleporting.
+  mute:
+    description: Mute players.
+  particle:
+    description: Get particles.
+  player:
+    description: Add or remove a player from the list.
+  poll:
+    description: Vote for an ongoing poll.
+  rank:
+    description: Set ranks for different players!
+  restart:
+    description: Restart the server.
+  reload:
+    description: Reload the server.
+  save:
+    description: Save worlds.
+  scan:
+    description: Scan for entities.
+  spam:
+    description: Spam a certain message.
+  staff:
+    description: This is a command for the staff team!
+  sword:
+    description: Gives a sword to defend a player!
+  test:
+    description: Piesrgr8 tests methods with this command!
+  unmute:
+    description: Unmute players.
+  vs:
+    description: Vanish from players.
+  website:
+    description: Get the URL for the website!
+  world:
+    description: Get the current world that you are in!
+
+permissions:
+    bc.*:
+        description: Gives all permissions to a player.
+        children:
+            bc.armor: true
+            bc.ban: true
+            bc.fakek: true
+            bc.fakeb: true
+            bc.fakej: true
+            bc.fakel: true
+            bc.full: true
+            bc.gamemode0: true
+            bc.gamemode1: true
+            bc.gamemode2: true
+            bc.gamemode3: true
+            bc.helpbypass: true
+            bc.kick: true
+            bc.main: true
+            bc.mutebypass: true
+            bc.mute: true
+            bc.placedblocked: true
+            bc.player: true
+            bc.rank: true
+            bc.save: true
+            bc.silentjoin: true
+            bc.silentquit: true
+            bc.test: true
+            bc.unmute: true
+            bc.vanish: true
+    bc.kit.*:
+        description: Gives all kits to a player.
+        children:
+            bc.kit
+            bc.kit.starter
+            bc.kit.vip
+            bc.kit.vip1
+            bc.kit.vip2
+            bc.kit.master
+            bc.kit.premium
+            bc.kit.staff
+            bc.kit.yt
+    bc.armor:
+        description: Grants the player armor for protection.
+    bc.ban:
+        description: Ban players.
+    bc.fakek:
+        description: Fake a kick!
+    bc.fakeb:
+        description: Fake a ban!
+    bc.fakej:
+        description: Fake a join!
+    bc.fakel:
+        description: Fake a leave!
+    bc.full:
+        description: Join the server when it is currently full!
+    bc.gamemode0:
+        description: Set gamemode to Survival.
+    bc.gamemode1:
+        description: Set gamemode to Creative.
+    bc.gamemode2:
+        description: Set gamemode to Adventure.
+    bc.gamemode3:
+        description: Set gamemode to Spectator.
+    bc.helpbypass:
+        description: Bypasses the help message.
+    bc.kick:
+        description: Kick players.
+    bc.kit:
+        description: The main command for kits.
+    bc.kit.starter:
+        description: Gives starter kit!
+    bc.kit.vip:
+        description: Gives vip kit!
+    bc.kit.vip1:
+        description: Gives vip+ kit!
+    bc.kit.vip2:
+        description: Gives +vip+ kit!
+    bc.kit.master:
+        description: Gives master kit!
+    bc.kit.premium:
+        description: Gives premium kit!
+    bc.kit.staff:
+        description: Gives staff kit!
+    bc.kit.yt:
+        description: Gives yt kit!
+    bc.main:
+        description: The main plugin permission.
+    bc.mutebypass:
+        description: Bypass the mute command.
+    bc.mute:
+        description: Mute players.
+    bc.placeblocked:
+        description: Permission to place a blocked block.
+    bc.player:
+        description: Add or remove a player from a list.
+    bc.rank:
+        description: Set ranks for different players!
+    bc.save:
+        description: Save all worlds.
+    bc.silentjoin:
+        description: Silently sneak into the server.
+    bc.silentquit:
+        description: Silently quit the server.
+    bc.staff:
+        description: This is a command for the staff team!
+    bc.test:
+        description: Testing a method.
+    bc.unmute:
+        description: Unmute players.
+    bc.vanish:
+        description: Vanish from players.

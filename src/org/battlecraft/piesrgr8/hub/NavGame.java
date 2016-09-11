@@ -1,0 +1,200 @@
+package org.battlecraft.piesrgr8.hub;
+
+import java.util.Arrays;
+import java.util.Random;
+
+import org.battlecraft.piesrgr8.BattlecraftServer;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class NavGame implements Listener {
+
+	BattlecraftServer plugin;
+
+	public NavGame(BattlecraftServer p) {
+		this.plugin = p;
+	}
+
+	public static void openGUI(Player p) {
+		Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Quick Game");
+
+		// Creating the items and registering them.
+
+		ItemStack main = new ItemStack(Material.COBBLESTONE);
+		ItemMeta main1 = main.getItemMeta();
+
+		ItemStack mg = new ItemStack(Material.SLIME_BALL);
+		ItemMeta mg1 = mg.getItemMeta();
+
+		ItemStack sw = new ItemStack(Material.BOW);
+		ItemMeta sw1 = sw.getItemMeta();
+
+		ItemStack hg = new ItemStack(Material.CHEST);
+		ItemMeta hg1 = hg.getItemMeta();
+
+		ItemStack air = new ItemStack(Material.STAINED_GLASS_PANE);
+		ItemMeta air1 = air.getItemMeta();
+
+		// Setting the meta, or names, of all of the blocks that will be added
+		// to the inventory.
+
+		main1.setDisplayName(ChatColor.GOLD + "Main PvP");
+		main1.setLore(Arrays.asList(ChatColor.YELLOW + "The heart of Battlecraft.",
+				ChatColor.YELLOW + "Play this fast-paced pvp", ChatColor.YELLOW + "with several gamemodes to",
+				ChatColor.YELLOW + "choose from!"));
+		main.setItemMeta(main1);
+
+		mg1.setDisplayName(ChatColor.DARK_RED + "Minigames");
+		mg1.setLore(Arrays.asList(ChatColor.YELLOW + "Basic minigames so fun,",
+				ChatColor.YELLOW + "that you will never", ChatColor.YELLOW + "want to leave!"));
+		mg.setItemMeta(mg1);
+
+		sw1.setDisplayName(ChatColor.BLUE + "SkyWars");
+		sw1.setLore(
+				Arrays.asList(ChatColor.YELLOW + "Fight in the sky on a", ChatColor.YELLOW + "square block with a tree",
+						ChatColor.YELLOW + "and other resources!", ChatColor.YELLOW + "Dont fall off!"));
+		sw.setItemMeta(sw1);
+
+		hg1.setDisplayName(ChatColor.YELLOW + "Survival Games");
+		hg1.setLore(Arrays.asList(ChatColor.YELLOW + "A classic game, where survival",
+				ChatColor.YELLOW + "is all you have left.", ChatColor.YELLOW + "This pvp game has been seen",
+				ChatColor.YELLOW + "everywhere lately!"));
+		hg.setItemMeta(hg1);
+
+		air1.setDisplayName(ChatColor.RED + "Click me or the empty spaces to exit!");
+		air.setItemMeta(air1);
+
+		// Set the items in their places.
+
+		inv.setItem(1, main);
+		inv.setItem(3, mg);
+		inv.setItem(5, sw);
+		inv.setItem(7, hg);
+		// MAINTENANCE FOR CREATIVE
+		inv.setItem(0, air);
+		inv.setItem(2, air);
+		inv.setItem(4, air);
+		inv.setItem(6, air);
+		inv.setItem(8, air);
+
+		p.openInventory(inv);
+	}
+
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent e) {
+		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Quick Game"))
+			return;
+
+		Player p = (Player) e.getWhoClicked();
+		e.setCancelled(true);
+
+		if (e.getCurrentItem() == null || e.getCurrentItem().getType().equals(Material.AIR)
+				|| !e.getCurrentItem().hasItemMeta()) {
+			p.closeInventory();
+			return;
+		}
+
+		switch (e.getCurrentItem().getType()) {
+		case COBBLESTONE:
+			p.closeInventory();
+
+			Random rand = new Random();
+			int random = rand.nextInt(6);
+			if (random == 0) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft1");
+			} else if (random == 1) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft2");
+			} else if (random == 2) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft3");
+			} else if (random == 3) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft4");
+			} else if (random == 4) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft5");
+			} else if (random == 5) {
+				Bukkit.getServer().dispatchCommand(p, "mg join Battlecraft6");
+			}
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN
+					+ "" + ChatColor.BOLD + "Main PvP.");
+			break;
+
+		case SLIME_BALL:
+			p.closeInventory();
+			Bukkit.getServer().dispatchCommand(p, "oitc join Coliseum");
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+					+ ChatColor.BOLD + "Minigames");
+			break;
+
+		case BOW:
+			p.closeInventory();
+			Bukkit.getServer().dispatchCommand(p, "sw join");
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a game in " + ChatColor.GREEN + ""
+					+ ChatColor.BOLD + "SkyWars");
+			break;
+
+		case CHEST:
+			p.closeInventory();
+
+			Random rand1 = new Random();
+			int random1 = rand1.nextInt(6);
+
+			if (random1 == 0) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 1");
+			} else if (random1 == 1) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 2");
+			} else if (random1 == 2) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 3");
+			} else if (random1 == 3) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 4");
+			} else if (random1 == 4) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 5");
+			} else if (random1 == 5) {
+				Bukkit.getServer().dispatchCommand(p, "sg join 6");
+			}
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Joined a random game in " + ChatColor.GREEN
+					+ "" + ChatColor.BOLD + "Survival Games");
+			break;
+
+		case ENDER_PEARL:
+			p.closeInventory();
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
+					+ ChatColor.BOLD + "Hub.");
+			break;
+
+		case EXP_BOTTLE:
+			p.closeInventory();
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
+					+ ChatColor.BOLD + "Shop.");
+			break;
+
+		case STAINED_GLASS_PANE:
+			p.closeInventory();
+			break;
+
+		default:
+			p.closeInventory();
+			break;
+		}
+	}
+
+	@EventHandler
+	public void onPlayerInteract(PlayerInteractEvent e) {
+		Action a = e.getAction();
+		ItemStack is = e.getItem();
+
+		if (a == Action.PHYSICAL || is == null || is.getType().equals(Material.AIR))
+			return;
+
+		if (is.getType().equals(Material.END_CRYSTAL))
+			openGUI(e.getPlayer());
+	}
+}

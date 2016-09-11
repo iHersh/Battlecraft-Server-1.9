@@ -1,0 +1,43 @@
+players:
+  - Piesrgr8
+helpblockmessages:
+  - "&eWelcome to the info menu!"
+  - "&eContact &bjaredbowman &e on skype for help!"
+  - "&eOtherwise, contact our staff on this server!"
+badwords:
+  - fuck
+  - bitch
+  - nigger
+  - damn
+  - bastard
+  - gay
+  - fucking
+  - ass
+  - ghay
+  - fack
+  - biatch
+  - niggas
+  - nigga
+  - nigger
+  - dick
+  - dik
+  - dic
+  - cock
+  - cok
+  - coc
+  - dammit
+  - phuck
+  - phucking
+  - phuking
+  - phuk
+  - retarded
+  - returded
+worlds:
+  - world
+  - CARD_LICKER
+  - Creative
+  - Hub1
+titleonjoin: false
+pcm:
+  - First
+  - Second
