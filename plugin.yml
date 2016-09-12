@@ -33,6 +33,8 @@ commands:
     description: Set gamemode to Spectator.
   heal:
     description: Heal yourself.
+  hub:
+    description: Spawn in the hub.
   information:
     description: Shows what you can do!
   kick:
@@ -61,8 +63,12 @@ commands:
     description: Save worlds.
   scan:
     description: Scan for entities.
+  sethub:
+    description: Set the hub!
   spam:
     description: Spam a certain message.
+  spawn:
+    description: Spawn in the hub.
   staff:
     description: This is a command for the staff team!
   sword:
@@ -175,10 +181,22 @@ permissions:
         description: Permission to place a blocked block.
     bc.player:
         description: Add or remove a player from a list.
+    bc.prefix.owner:
+        description: For chat purposes.
+    bc.prefix.admin:
+        description: For chat purposes.
+    bc.prefix.mod:
+        description: For chat purposes.
+    bc.prefix.helper:
+        description: For chat purposes.
+    bc.prefix.builder:
+        description: For chat purposes.
     bc.rank:
         description: Set ranks for different players!
     bc.save:
         description: Save all worlds.
+    bc.sethub:
+        description: Set the hub.
     bc.silentjoin:
         description: Silently sneak into the server.
     bc.silentquit:

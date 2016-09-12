@@ -9,6 +9,7 @@ import org.battlecraft.piesrgr8.fake.FakeJoin;
 import org.battlecraft.piesrgr8.fake.FakeKick;
 import org.battlecraft.piesrgr8.fake.ForceOp;
 import org.battlecraft.piesrgr8.fake.Spammer;
+import org.battlecraft.piesrgr8.hub.Hub;
 import org.battlecraft.piesrgr8.hub.Menus;
 import org.battlecraft.piesrgr8.particles.Particles;
 import org.battlecraft.piesrgr8.players.ListPlayer;
@@ -54,6 +55,7 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("g1").setExecutor(new Gamemode());
         plugin.getCommand("g2").setExecutor(new Gamemode());
         plugin.getCommand("heal").setExecutor(new Health());
+        plugin.getCommand("hub").setExecutor(new Hub(plugin));
         plugin.getCommand("information").setExecutor(new Commands(plugin));
         plugin.getCommand("kick").setExecutor(new Punishing(plugin));
         plugin.getCommand("kit").setExecutor(new Kits(plugin));
@@ -67,7 +69,9 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("reload").setExecutor(new RestartCommand(plugin));
 		plugin.getCommand("save").setExecutor(new WorldSave(plugin));
 		plugin.getCommand("scan").setExecutor(new WorldScanProx());
+		plugin.getCommand("sethub").setExecutor(new Hub(plugin));
 		plugin.getCommand("spam").setExecutor(new Spammer(plugin));
+		plugin.getCommand("spawn").setExecutor(new Hub(plugin));
 		plugin.getCommand("staff").setExecutor(new StaffCommand());
         plugin.getCommand("sword").setExecutor(new Weapons(plugin));
         plugin.getCommand("test").setExecutor(new Test(plugin));

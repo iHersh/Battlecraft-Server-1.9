@@ -1,17 +1,38 @@
 package org.battlecraft.piesrgr8.weapons;
 
+import java.util.ArrayList;
+
+import org.battlecraft.piesrgr8.BattlecraftServer;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import net.minecraft.server.v1_9_R2.EnumParticle;
+import net.minecraft.server.v1_9_R2.PacketPlayOutWorldParticles;
+
 public class Guns implements Listener {
+
+	public ArrayList<Projectile> arrows = new ArrayList<Projectile>();
+	
+	BattlecraftServer plugin;
+	
+	public Guns(BattlecraftServer p) {
+		this.plugin = p;
+	}
 
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
@@ -29,6 +50,45 @@ public class Guns implements Listener {
 		if (p.getGameMode() != GameMode.CREATIVE) {
 			e.getPlayer().getInventory().removeItem(new ItemStack(Material.TNT, 1));
 		}
-		e.getPlayer().getLocation().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 10, 10);
+		e.getPlayer().getLocation().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 10,
+				10);
 	}
+
+	@EventHandler
+	public void onShootBow(EntityShootBowEvent e) {
+		if (!e.getBow().hasItemMeta()) {
+			return;
+		}
+		arrows.add((Projectile) e.getProjectile());
+		addParticleEffect((Projectile) e.getProjectile());
+	}
+
+	@EventHandler
+	public void onProjectileHit(ProjectileHitEvent e) {
+		if (e.getEntity() instanceof Arrow) {
+			arrows.remove(e.getEntity());
+
+		}
+	}
+
+	public void addParticleEffect(final Projectile entity) {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+
+			@Override
+			public void run() {
+				for(Projectile arrows : arrows){
+                    for(Player online : Bukkit.getOnlinePlayers()){
+                        Location loc = arrows.getLocation();
+                        ((CraftPlayer) online).getHandle().playerConnection
+                                .sendPacket(new PacketPlayOutWorldParticles(
+                                        EnumParticle.DRAGON_BREATH, true, (float) loc.getX(),
+                                        (float) loc.getY(), (float) loc.getZ(), 1,
+                                        1, 1,(float) 0, 6));
+                    }
+                    }
+                }
+ 
+        }, 0, 1);
+    }
+
 }

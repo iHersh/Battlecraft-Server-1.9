@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.battlecraft.piesrgr8.config.Spawning;
 import org.battlecraft.piesrgr8.essentials.AntiSwear;
+import org.battlecraft.piesrgr8.essentials.Chat;
 import org.battlecraft.piesrgr8.essentials.Commands;
 import org.battlecraft.piesrgr8.essentials.PlayerTp;
 import org.battlecraft.piesrgr8.fake.SilentJoin;
@@ -115,6 +117,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		ListPlayer.savePlayerList(this);
 		PlayerCountMessage.playerCountMessage(this);
 		StaffList.saveStaffYaml(this);
+		Spawning.saveSpawnYaml(this);
 		getConfig();
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -132,7 +135,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Piesrgr8(this), this);
 		pm.registerEvents(new AntiSwear(this), this);
 		pm.registerEvents(new WorldHandler(this), this);
-		pm.registerEvents(new Guns(), this);
+		pm.registerEvents(new Guns(this), this);
 		pm.registerEvents(new Poll(this), this);
 		pm.registerEvents(new PacketUtil(this), this);
 		pm.registerEvents(new DeathListener(this), this);
@@ -144,6 +147,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new NavGame(this), this);
 		pm.registerEvents(new PlayerTp(this), this);
 		pm.registerEvents(new Launchers(this), this);
+		pm.registerEvents(new Chat(this), this);
 
 		// FOR SHOP
 		pm.registerEvents(new Shop(this), this);
@@ -160,6 +164,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		ListPlayer.savePlayerList(this);
 		PlayerCountMessage.playerCountMessage(this);
 		StaffList.saveStaffYaml(this);
+		Spawning.saveSpawnYaml(this);
 		getLogger().info("The Battlecraft Server Plugin is asleep!");
 		plugin = null;
 	}

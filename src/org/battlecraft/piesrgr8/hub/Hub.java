@@ -1,5 +1,7 @@
 package org.battlecraft.piesrgr8.hub;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
@@ -9,6 +11,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,9 +25,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Hub implements Listener {
+public class Hub implements Listener, CommandExecutor {
 
 	BattlecraftServer plugin;
+
+	static File f = new File("plugins/BattlecraftServer/spawns.yml");
+	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 
 	public Hub(BattlecraftServer p) {
 		this.plugin = p;
@@ -264,5 +273,60 @@ public class Hub implements Listener {
 
 		if (is.getType().equals(Material.NETHER_STAR))
 			openGUI(e.getPlayer());
+	}
+
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("sethub")) {
+			if (!(sender instanceof Player)) {
+				sender.sendMessage(BattlecraftServer.prefixHub + "Cant set spawn as a computer.");
+				return true;
+			}
+
+			Player p = (Player) sender;
+			if (!p.hasPermission("bc.sethub")) {
+				p.sendMessage(BattlecraftServer.prefixHub + ChatColor.RED + "You are not allowed to set the hub!");
+				return true;
+			}
+
+			yaml.createSection("hub");
+			yaml.createSection("hub.world");
+			yaml.createSection("hub.x");
+			yaml.createSection("hub.y");
+			yaml.createSection("hub.z");
+			yaml.set("hub.world", p.getWorld().getName());
+			yaml.set("hub.x", p.getLocation().getX());
+			yaml.set("hub.y", p.getLocation().getY());
+			yaml.set("hub.z", p.getLocation().getZ());
+			try {
+				yaml.save(f);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Spawn set for the hub!");
+			return true;
+		}
+
+		if (cmd.getName().equalsIgnoreCase("hub") || cmd.getName().equalsIgnoreCase("spawn")) {
+			if (!(sender instanceof Player)) {
+				sender.sendMessage(BattlecraftServer.prefixHub + ChatColor.RED + "Cant spawn in as a computer.");
+				return true;
+			}
+			if (yaml.get("hub.world") == null && yaml.get("hub.x") == null && yaml.get("hub.y") == null
+					&& yaml.get("hub.z") == null) {
+				sender.sendMessage(BattlecraftServer.prefixHub + ChatColor.RED + "The hub hasnt been set yet!");
+				return true;
+			}
+
+			Player p = (Player) sender;
+			World w = Bukkit.getServer().getWorld(yaml.getString("hub.world"));
+			double x = yaml.getDouble("hub.x");
+			double y = yaml.getDouble("hub.y");
+			double z = yaml.getDouble("hub.z");
+			p.teleport(new Location(w, x, y, z));
+			p.sendMessage(BattlecraftServer.prefixHub + ChatColor.GREEN + "Teleported to " + ChatColor.GREEN + ""
+					+ ChatColor.BOLD + "Hub.");
+			return true;
+		}
+		return true;
 	}
 }

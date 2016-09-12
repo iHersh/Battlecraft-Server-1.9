@@ -35,7 +35,7 @@ public class Dynamicmotd implements Listener {
 			e.setMotd(permanent + "    " + ChatColor.translateAlternateColorCodes('&', "&7&l( &cMinigames "
 					+ "&7- &6SkyBlock &7- &eFactions &7- &2SG &7- &bSW &7&l)"));
 		} else if (random == 3) {
-			e.setMotd(permanent + "    " + ChatColor.RED + "" + ChatColor.BOLD + "COMING SOON! " + ChatColor.AQUA + "Mystery Crates!");
+			e.setMotd(permanent + "    " + ChatColor.GOLD + "" + ChatColor.BOLD + "!NEW! " + ChatColor.AQUA + "Mystery Crates!");
 		}
 
 	}
