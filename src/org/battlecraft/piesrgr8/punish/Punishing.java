@@ -41,27 +41,27 @@ public class Punishing implements CommandExecutor {
 				 return true; 
 				 }
 				 
-				Player p = (Player) sender;
+				
 				Player target = Bukkit.getServer().getPlayer(args[0]);
 				if (target == null) {
-					p.sendMessage(BattlecraftServer.prefixPunish + ChatColor.RED + args[0] + " isnt online!");
+					sender.sendMessage(BattlecraftServer.prefixPunish + ChatColor.RED + args[0] + " isnt online!");
 					return true;
 				} else {
 					target.kickPlayer(BattlecraftServer.prefixPunish + exline + ChatColor.YELLOW
 							+ "You have been kicked for......" + exline + ChatColor.YELLOW
 							+ "Well, it says that there was no reason for being kicked." + exline + ChatColor.YELLOW
 							+ "We believe that this is a mistake, and we are sorry. Join back!");
-					successful(p);
+					
 					Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName() + ChatColor.YELLOW
-							+ " was kicked by " + p.getDisplayName());
+							+ " was kicked by " + sender.getName());
 				}
 			}
             if (args.length >= 2) {
-			Player p = (Player) sender;
+			
 			Player target = Bukkit.getServer().getPlayer(args[0]);
 				String bc = "";
 				for (String message : args) {
-					if (message.contains(p.getName())) {
+					if (message.contains(sender.getName())) {
 						continue;
 					}
 					bc = (bc + message + " ");
@@ -70,9 +70,9 @@ public class Punishing implements CommandExecutor {
 				target.kickPlayer(BattlecraftServer.prefixPunish + exline + ChatColor.YELLOW
 						+ "You have been kicked for......" + exline + ChatColor.GREEN + bc + exline + ChatColor.YELLOW
 						+ "This means that its not the end of the world. Join back!");
-				successful(p);
+				
 				Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName() + ChatColor.YELLOW
-						+ " was kicked by " + p.getDisplayName() + ChatColor.YELLOW + " for " + ChatColor.GREEN + bc);
+						+ " was kicked by " + sender.getName() + ChatColor.YELLOW + " for " + ChatColor.GREEN + bc);
 			}
 		}
 
@@ -90,10 +90,10 @@ public class Punishing implements CommandExecutor {
 					 return true; 
 					 }
 					 
-					Player p = (Player) sender;
+					
 					Player target = Bukkit.getServer().getPlayer(args[0]);
 					if (target == null) {
-						p.sendMessage("That player isnt online!");
+						sender.sendMessage("That player isnt online!");
 						return true;
 					} else {
 						target.kickPlayer(BattlecraftServer.prefixPunish + exline + ChatColor.YELLOW
@@ -102,17 +102,16 @@ public class Punishing implements CommandExecutor {
 								+ "Report to " + website + ChatColor.YELLOW + " and submit an appeal!" + exline
 								+ ChatColor.YELLOW + "Just be sure to take a screenshot of THIS message!");
 						target.setBanned(true);
-						successful(p);
 						Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName()
-								+ ChatColor.YELLOW + " was banned by " + p.getDisplayName());
+								+ ChatColor.YELLOW + " was banned by " + sender.getName());
 					}
 				}
 				if (args.length >= 2) {
-				Player p = (Player) sender;
+				
 				Player target = Bukkit.getServer().getPlayer(args[0]);
 					String bc = "";
 					for (String message : args) {
-						if (message.contains(p.getName())) {
+						if (message.contains(sender.getName())) {
 							continue;
 						}
 						bc = (bc + message + " ");
@@ -121,16 +120,11 @@ public class Punishing implements CommandExecutor {
 							+ "You have been banned for......" + exline + ChatColor.GREEN + bc + exline
 							+ ChatColor.YELLOW + "If you believe that you were wrongfully banned, report it!"
 							+ exline + ChatColor.YELLOW + "Go to " + website + ChatColor.YELLOW + " and submit and appeal.");
-					successful(p);
 					Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName() + ChatColor.YELLOW
-							+ " was banned by " + p.getDisplayName() + ChatColor.YELLOW + " for " + ChatColor.GREEN + bc);
+							+ " was banned by " + sender.getName() + ChatColor.YELLOW + " for " + ChatColor.GREEN + bc);
 				}
 			}
 		}
 		return true;
-	}
-
-	public void successful(Player p) {
-		p.sendMessage(BattlecraftServer.prefixPunish + ChatColor.YELLOW + "Your target has been delt with!");
 	}
 }

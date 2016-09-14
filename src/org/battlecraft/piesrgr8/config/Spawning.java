@@ -31,4 +31,19 @@ public class Spawning {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void saveWarpYaml(BattlecraftServer plugin) {
+		if (!new File(plugin.getDataFolder(), "warps.yml").exists()) {
+			try {
+				new File(plugin.getDataFolder(), "warps.yml").createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			yaml.save(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

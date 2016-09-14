@@ -7,8 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import me.clip.ezprestige.EZPrestige;
-
 public class Chat implements Listener{
 	
 	BattlecraftServer plugin;
@@ -20,27 +18,30 @@ public class Chat implements Listener{
 	@EventHandler
 	public void chat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
-		String ptop = EZPrestige.getOptions().getOpPrestigeChatTag();
-		String pt = EZPrestige.getOptions().getPrestigeRank();
-		String pno = EZPrestige.getOptions().getNoPrestigeChatTag();
+		
+		if (p.isOp()) {
+			p.setDisplayName(ChatColor.YELLOW + p.getName());
+		}else {
+			p.setDisplayName(ChatColor.WHITE + p.getName());
+		}
 		
 		if (p.hasPermission("bc.prefix.owner")) {
-			e.setFormat(ptop + " " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "OWNER " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.DARK_RED + "" + ChatColor.BOLD + "OWNER " + ChatColor.RESET + p.getDisplayName() + " " +
 		ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else if (p.hasPermission("bc.prefix.admin")) {
-			e.setFormat(pt + " " + ChatColor.RED + "" + ChatColor.BOLD + "ADMIN " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.RED + "" + ChatColor.BOLD + "ADMIN " + ChatColor.RESET + p.getDisplayName() + " " +
 					ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else if (p.hasPermission("bc.prefix.mod")) {
-			e.setFormat(pt + " " + ChatColor.GOLD + "" + ChatColor.BOLD + "MOD " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.GOLD + "" + ChatColor.BOLD + "MOD " + ChatColor.RESET + p.getDisplayName() + " " +
 					ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else if (p.hasPermission("bc.prefix.helper")) {
-			e.setFormat(pt + " " + ChatColor.GREEN + "" + ChatColor.BOLD + "HELPER " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.GREEN + "" + ChatColor.BOLD + "HELPER " + ChatColor.RESET + p.getDisplayName() + " " +
 					ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else if (p.hasPermission("bc.prefix.builder")) {
-			e.setFormat(pt + " " + ChatColor.BLUE + "" + ChatColor.BOLD + "BUILDER " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.BLUE + "" + ChatColor.BOLD + "BUILDER " + ChatColor.RESET + p.getDisplayName() + " " +
 					ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else {
-			e.setFormat(pno + " " + ChatColor.GRAY + "" + ChatColor.ITALIC + "Player " + ChatColor.RESET + p.getName() + " " +
+			e.setFormat(ChatColor.GRAY + "" + ChatColor.ITALIC + "Player " + ChatColor.RESET + p.getDisplayName() + " " +
 					ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		}
 	}

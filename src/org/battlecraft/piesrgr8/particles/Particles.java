@@ -7,7 +7,11 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import net.minecraft.server.v1_9_R2.EnumParticle;
+import net.minecraft.server.v1_9_R2.PacketPlayOutWorldParticles;
 
 public class Particles implements CommandExecutor{
 
@@ -54,9 +58,15 @@ public class Particles implements CommandExecutor{
 					double y = r*Math.cos(phi) + 1.5;
 					double z = r*Math.sin(theta)*Math.sin(phi);
 					loc.add(x, y, z);
-					ParticleEffect.DRIP_WATER.display(0, 0, 0, 1, 1, loc, 20);
+					for(Player online : Bukkit.getOnlinePlayers()){
+					((CraftPlayer) online).getHandle().playerConnection
+                    .sendPacket(new PacketPlayOutWorldParticles(
+                            EnumParticle.DRIP_WATER, true, (float) loc.getX(),
+                            (float) loc.getY(), (float) loc.getZ(), 0,
+                            0, 0,(float) 1, 1, null));
 				}
 			}
+		}
 		},1);
 	}
 }

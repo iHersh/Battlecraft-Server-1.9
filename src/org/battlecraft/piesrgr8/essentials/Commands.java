@@ -18,6 +18,8 @@ import org.battlecraft.piesrgr8.punish.Mute;
 import org.battlecraft.piesrgr8.punish.Punishing;
 import org.battlecraft.piesrgr8.punish.Unmute;
 import org.battlecraft.piesrgr8.staff.StaffCommand;
+import org.battlecraft.piesrgr8.support.Issue;
+import org.battlecraft.piesrgr8.support.Report;
 import org.battlecraft.piesrgr8.utils.ClickChat;
 import org.battlecraft.piesrgr8.utils.MaintenanceCommand;
 import org.battlecraft.piesrgr8.utils.RestartCommand;
@@ -57,6 +59,7 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("heal").setExecutor(new Health());
         plugin.getCommand("hub").setExecutor(new Hub(plugin));
         plugin.getCommand("information").setExecutor(new Commands(plugin));
+        plugin.getCommand("issue").setExecutor(new Issue());
         plugin.getCommand("kick").setExecutor(new Punishing(plugin));
         plugin.getCommand("kit").setExecutor(new Kits(plugin));
         plugin.getCommand("maintenance").setExecutor(new MaintenanceCommand(plugin));
@@ -65,11 +68,13 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("particle").setExecutor(new Particles(plugin));
         plugin.getCommand("player").setExecutor(new ListPlayer(plugin));
         plugin.getCommand("poll").setExecutor(new Poll(plugin));
+        plugin.getCommand("report").setExecutor(new Report());
         plugin.getCommand("restart").setExecutor(new RestartCommand(plugin));
         plugin.getCommand("reload").setExecutor(new RestartCommand(plugin));
 		plugin.getCommand("save").setExecutor(new WorldSave(plugin));
 		plugin.getCommand("scan").setExecutor(new WorldScanProx());
 		plugin.getCommand("sethub").setExecutor(new Hub(plugin));
+		plugin.getCommand("setwarp").setExecutor(new Teleportation());
 		plugin.getCommand("spam").setExecutor(new Spammer(plugin));
 		plugin.getCommand("spawn").setExecutor(new Hub(plugin));
 		plugin.getCommand("staff").setExecutor(new StaffCommand());
@@ -79,6 +84,7 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("unmute").setExecutor(new Unmute());
         plugin.getCommand("vs").setExecutor(new Invisibility());
         plugin.getCommand("website").setExecutor(new ClickChat(plugin));
+        plugin.getCommand("warp").setExecutor(new Teleportation());
         plugin.getCommand("world").setExecutor(new WorldHandler(plugin));
 	}
 	
@@ -117,7 +123,7 @@ public class Commands implements CommandExecutor{
 				
 				String bc = "";
 				for (String message : args) {
-					bc = (bc + message + " ");
+					bc = (bc + ChatColor.translateAlternateColorCodes('&', message) + " ");
 				}
 				Bukkit.getServer().broadcastMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + bc);
 			}

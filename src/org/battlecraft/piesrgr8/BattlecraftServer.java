@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.battlecraft.piesrgr8.config.ConfigManager;
 import org.battlecraft.piesrgr8.config.Spawning;
 import org.battlecraft.piesrgr8.essentials.AntiSwear;
 import org.battlecraft.piesrgr8.essentials.Chat;
@@ -40,7 +41,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -56,7 +56,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 	public static List<String> message1 = new ArrayList<String>();
 
 	private static JavaPlugin instance;
-
+ 
 	// ALL PREFIXES FOR SEVERAL CLASSES!
 
 	public static String prefixMain = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.GRAY
@@ -97,18 +97,18 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 
 	public static String prefixShop = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Shop" + ChatColor.GRAY + "] ";
+	
+	public static String prefixReport = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.DARK_RED
+			+ "" + ChatColor.BOLD + "Report" + ChatColor.GRAY + "] ";
+	
+	public static String prefixWarp = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
+			+ "" + ChatColor.BOLD + "Warp" + ChatColor.GRAY + "] ";
 
 	public static String prefixCooldown = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "" + ChatColor.BOLD + "COOLDOWN"
 			+ ChatColor.GRAY + "] ";
 
 	@Override
 	public void onEnable() {
-		if (!setupEconomy()) {
-			getLogger().severe("The Battlecraft Server Plugin was shut down due to economy issues!");
-			getServer().getPluginManager().disablePlugin(this);
-			return;
-		}
-
 		Cooldown.cooldownTime = new HashMap<Player, Integer>();
 		Cooldown.cooldownTask = new HashMap<Player, BukkitRunnable>();
 		getLogger().info("The Battlecraft Server Plugin is awake and alive!");
@@ -118,10 +118,12 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		PlayerCountMessage.playerCountMessage(this);
 		StaffList.saveStaffYaml(this);
 		Spawning.saveSpawnYaml(this);
+		Spawning.saveWarpYaml(this);
+		ConfigManager.saveIssueYaml(this);
+		ConfigManager.saveReportYaml(this);
 		getConfig();
 		getConfig().options().copyDefaults(true);
 		saveConfig();
-
 		registerEvents();
 		Commands.registerCommands(this);
 	}
@@ -165,23 +167,14 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		PlayerCountMessage.playerCountMessage(this);
 		StaffList.saveStaffYaml(this);
 		Spawning.saveSpawnYaml(this);
+		Spawning.saveWarpYaml(this);
+		ConfigManager.saveIssueYaml(this);
+		ConfigManager.saveReportYaml(this);
 		getLogger().info("The Battlecraft Server Plugin is asleep!");
 		plugin = null;
 	}
 
 	public static JavaPlugin getInstance() {
 		return instance;
-	}
-
-	private boolean setupEconomy() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null) {
-			return false;
-		}
-		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-		if (rsp == null) {
-			return false;
-		}
-		econ = rsp.getProvider();
-		return econ != null;
 	}
 }

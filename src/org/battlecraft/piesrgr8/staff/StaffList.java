@@ -16,6 +16,7 @@ public class StaffList {
 	BattlecraftServer plugin;
 	
 	static ArrayList<String> staff = new ArrayList<>();
+	public static ArrayList<Player> player = new ArrayList<Player>();
 
 	static File f = new File("plugins/BattlecraftServer/staff.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);

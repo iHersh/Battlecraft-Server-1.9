@@ -21,6 +21,9 @@ public class SilentJoin implements Listener {
 			System.out.println("Must have the permission first.");
 			return;
 		}
+		if (e.getPlayer().isOp()) {
+			e.setJoinMessage("A silent joiner is here");
+		}
 		e.setJoinMessage(null);
 	}
 
