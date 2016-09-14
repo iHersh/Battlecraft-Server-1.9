@@ -1,4 +1,4 @@
-## The Battlecraft Server Plugin for 1.9
+# The Battlecraft Server Plugin for 1.9
 
 This is the project for Battlecraft
 
