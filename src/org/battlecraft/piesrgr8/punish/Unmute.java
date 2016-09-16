@@ -1,5 +1,6 @@
 package org.battlecraft.piesrgr8.punish;
 
+import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,9 +11,9 @@ import org.bukkit.entity.Player;
 public class Unmute implements CommandExecutor{
 	
 	
-	String prefix = ChatColor.RED + "" + ChatColor.BOLD
-			+ "BC" + ChatColor.BLUE + "" + ChatColor.BOLD + "Punish" + ChatColor.WHITE + " - ";
+	String prefix = BattlecraftServer.prefixPunish;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 	
@@ -26,17 +27,15 @@ public class Unmute implements CommandExecutor{
 					sender.sendMessage(prefix + ChatColor.RED + "Please specify a player!");
 					return true;
 				}
-	            for (Player target : Bukkit.getOnlinePlayers()) {
+	            Player target = Bukkit.getServer().getPlayer(args[0]);
 	            if (target == null) {
 	                    sender.sendMessage(prefix + ChatColor.RED + "Could not find player " + args[0] + "!");
 	            }else{
 	            Mute.muted.remove(target);
-	            Bukkit.getServer().getPluginManager().callEvent(new Misc(target, Type.UNMUTE));
 	            Bukkit.getServer().broadcastMessage(prefix + ChatColor.YELLOW + "Player " + target.getName() + " has been unmuted by " + sender.getName() + "!");
 	            
 	            }
 	            }
-	}
 	return false;
 	}
 }

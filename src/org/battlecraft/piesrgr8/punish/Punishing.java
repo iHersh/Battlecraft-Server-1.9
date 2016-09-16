@@ -3,7 +3,12 @@ package org.battlecraft.piesrgr8.punish;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.io.File;
+import java.io.IOException;
+
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,6 +19,9 @@ public class Punishing implements CommandExecutor {
 
 	String exline = "\n";
 	String website = ChatColor.GREEN + "www.bcpvp101.enjin.com/forum";
+	
+	static File f = new File("plugins/BattlecraftServer/players.yml");
+	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 
 	public Punishing(BattlecraftServer p) {
 		this.plugin = p;
@@ -104,6 +112,12 @@ public class Punishing implements CommandExecutor {
 						target.setBanned(true);
 						Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName()
 								+ ChatColor.YELLOW + " was banned by " + sender.getName());
+						yaml.set(target.getName() + ".banned", true);
+						try {
+							yaml.save(f);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 				if (args.length >= 2) {
@@ -122,6 +136,12 @@ public class Punishing implements CommandExecutor {
 							+ exline + ChatColor.YELLOW + "Go to " + website + ChatColor.YELLOW + " and submit and appeal.");
 					Bukkit.broadcastMessage(BattlecraftServer.prefixPunish + target.getDisplayName() + ChatColor.YELLOW
 							+ " was banned by " + sender.getName() + ChatColor.YELLOW + " for " + ChatColor.GREEN + bc);
+					yaml.set(target.getName() + ".banned", true);
+					try {
+						yaml.save(f);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

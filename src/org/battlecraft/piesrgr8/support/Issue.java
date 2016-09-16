@@ -46,7 +46,7 @@ public class Issue implements CommandExecutor {
 					+ "and they will try the best they can to help solve the issue!");
 			for (Player on : Bukkit.getOnlinePlayers()) {
 			if (on.hasPermission("bc.staff")) {
-				p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.YELLOW + "A player has made an issue: " + ChatColor.GREEN + bc);
+				on.sendMessage(BattlecraftServer.prefixStaff + ChatColor.YELLOW + "A player has made an issue: " + ChatColor.GREEN + bc);
 			}
 			}
 			yaml.createSection(p.getName());

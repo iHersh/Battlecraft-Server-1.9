@@ -13,6 +13,8 @@ public class HubInv {
 	public static void hubInv(Player p) {
 		Inventory inv = p.getInventory();
 		
+		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
+		
 		ItemStack ns = new ItemStack(Material.NETHER_STAR);
 		ItemMeta meta = ns.getItemMeta();
 		
@@ -24,6 +26,10 @@ public class HubInv {
 		
 		meta1.setDisplayName(ChatColor.BLUE + "Quick Game");
 		ns1.setItemMeta(meta1);
+		
+		if (inv.contains(ns1) && inv.contains(ns) && inv.contains(book)) {
+			return;
+		}
 		
 		inv.addItem(ns);
 		inv.addItem(Rulebook.rulebook(p));

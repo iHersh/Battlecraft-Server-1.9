@@ -103,6 +103,9 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 	
 	public static String prefixWarp = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Warp" + ChatColor.GRAY + "] ";
+	
+	public static String prefixInv = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
+			+ "" + ChatColor.BOLD + "Inv" + ChatColor.GRAY + "] ";
 
 	public static String prefixCooldown = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "" + ChatColor.BOLD + "COOLDOWN"
 			+ ChatColor.GRAY + "] ";

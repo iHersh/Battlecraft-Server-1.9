@@ -57,7 +57,7 @@ public class Report implements CommandExecutor {
 						+ "records and has alerted staff members!");
 				for (Player on : Bukkit.getOnlinePlayers()) {
 					if (on.hasPermission("bc.staff")) {
-						p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.YELLOW + "A player has reported "
+						on.sendMessage(BattlecraftServer.prefixStaff + ChatColor.YELLOW + "A player has reported "
 								+ args[0] + " for: " + ChatColor.GREEN + bc);
 					}
 				}

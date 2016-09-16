@@ -29,7 +29,7 @@ public class Launchers implements Listener{
             if (e.getTo().getBlock().getRelative(BlockFace.SELF).getType() == Material.STONE_PLATE &&
             		e.getTo().getBlock().getRelative(BlockFace.DOWN).getType() == Material.REDSTONE_BLOCK) {
                     e.getPlayer().setVelocity(e.getPlayer().getLocation().getDirection().multiply(6));
-                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 1.0D, e.getPlayer().getVelocity().getZ()));
+                    e.getPlayer().setVelocity(new Vector(e.getPlayer().getVelocity().getX(), 3.0D, e.getPlayer().getVelocity().getZ()));
                     jumpers.add(e.getPlayer());
             }
     }

@@ -11,6 +11,9 @@ import org.battlecraft.piesrgr8.fake.ForceOp;
 import org.battlecraft.piesrgr8.fake.Spammer;
 import org.battlecraft.piesrgr8.hub.Hub;
 import org.battlecraft.piesrgr8.hub.Menus;
+import org.battlecraft.piesrgr8.inventory.Clear;
+import org.battlecraft.piesrgr8.inventory.Enderchest;
+import org.battlecraft.piesrgr8.inventory.Invsee;
 import org.battlecraft.piesrgr8.particles.Particles;
 import org.battlecraft.piesrgr8.players.ListPlayer;
 import org.battlecraft.piesrgr8.poll.Poll;
@@ -47,7 +50,9 @@ public class Commands implements CommandExecutor{
 		plugin.getCommand("armor").setExecutor(new Armors());
 		plugin.getCommand("ban").setExecutor(new Punishing(plugin));
 		plugin.getCommand("bc").setExecutor(new Commands(plugin));
+		plugin.getCommand("clear").setExecutor(new Clear());
 		plugin.getCommand("death").setExecutor(new Health());
+		plugin.getCommand("enderchest").setExecutor(new Enderchest());
 		plugin.getCommand("fakej").setExecutor(new FakeJoin());
 		plugin.getCommand("fakel").setExecutor(new FakeJoin());
 		plugin.getCommand("fakeb").setExecutor(new FakeBan());
@@ -59,6 +64,7 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("heal").setExecutor(new Health());
         plugin.getCommand("hub").setExecutor(new Hub(plugin));
         plugin.getCommand("information").setExecutor(new Commands(plugin));
+        plugin.getCommand("invsee").setExecutor(new Invsee());
         plugin.getCommand("issue").setExecutor(new Issue());
         plugin.getCommand("kick").setExecutor(new Punishing(plugin));
         plugin.getCommand("kit").setExecutor(new Kits(plugin));
@@ -81,6 +87,7 @@ public class Commands implements CommandExecutor{
         plugin.getCommand("sword").setExecutor(new Weapons(plugin));
         plugin.getCommand("test").setExecutor(new Test(plugin));
         plugin.getCommand("tp").setExecutor(new Teleportation());
+        plugin.getCommand("tphere").setExecutor(new Teleportation());
         plugin.getCommand("unmute").setExecutor(new Unmute());
         plugin.getCommand("vs").setExecutor(new Invisibility());
         plugin.getCommand("website").setExecutor(new ClickChat(plugin));

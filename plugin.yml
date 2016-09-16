@@ -11,8 +11,13 @@ commands:
     description: Ban players.
   bc:
     description: The main command for the plugin.
+  clear:
+    description: Clear your inventory.
   death:
     description: Kill yourself.
+  enderchest:
+    description: Open players inventory.
+    aliases: [ec,echest,enderc]
   fakej:
     description: Fake a join!
   fakel:
@@ -41,6 +46,8 @@ commands:
     description: Spawn in the hub.
   information:
     description: Shows what you can do!
+  invsee:
+    description: Open up a players inventory.
   issue:
     description: Send an issue if you spot any problems.
   kick:
@@ -87,6 +94,8 @@ commands:
     description: Piesrgr8 tests methods with this command!
   tp:
     description: Teleportation at its finest!
+  tphere:
+    description: Teleportation at its finest!
   unmute:
     description: Unmute players.
   vs:
@@ -114,6 +123,7 @@ permissions:
             bc.gamemode2: true
             bc.gamemode3: true
             bc.helpbypass: true
+            bc.invsee: true
             bc.kick: true
             bc.main: true
             bc.mutebypass: true
@@ -144,6 +154,8 @@ permissions:
         description: Grants the player armor for protection.
     bc.ban:
         description: Ban players.
+    bc.clear:
+        description: Clear inventory.
     bc.fakek:
         description: Fake a kick!
     bc.fakeb:
@@ -164,6 +176,8 @@ permissions:
         description: Set gamemode to Spectator.
     bc.helpbypass:
         description: Bypasses the help message.
+    bc.invsee:
+        description: Open a players inventory.
     bc.kick:
         description: Kick players.
     bc.kit:
@@ -198,7 +212,11 @@ permissions:
         description: Add or remove a player from a list.
     bc.prefix.owner:
         description: For chat purposes.
+    bc.prefix.cowner:
+        description: For chat purposes.
     bc.prefix.admin:
+        description: For chat purposes.
+    bc.prefix.dev:
         description: For chat purposes.
     bc.prefix.mod:
         description: For chat purposes.

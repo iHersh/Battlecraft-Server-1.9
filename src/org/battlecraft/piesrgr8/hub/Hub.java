@@ -271,7 +271,7 @@ public class Hub implements Listener, CommandExecutor {
 		if (a == Action.PHYSICAL || is == null || is.getType().equals(Material.AIR))
 			return;
 
-		if (is.getType().equals(Material.NETHER_STAR))
+		if (is.getType().equals(Material.NETHER_STAR) && is.hasItemMeta())
 			openGUI(e.getPlayer());
 	}
 

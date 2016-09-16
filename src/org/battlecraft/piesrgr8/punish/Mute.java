@@ -18,9 +18,9 @@ public class Mute implements CommandExecutor{
 	
 	public static ArrayList<Player> muted = new ArrayList<Player>();
 	
-	String prefix = ChatColor.RED + "" + ChatColor.BOLD
-			+ "BC" + ChatColor.BLUE + "" + ChatColor.BOLD + "Punish" + ChatColor.WHITE + " - ";
+	String prefix = BattlecraftServer.prefixPunish;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getLabel().equalsIgnoreCase("mute")) {
@@ -34,7 +34,7 @@ public class Mute implements CommandExecutor{
 				return true;
 			}
 			
-			for (Player target : Bukkit.getOnlinePlayers()) {
+			Player target = Bukkit.getServer().getPlayer(args[0]);
             if (target == null) {
                     sender.sendMessage(prefix + ChatColor.RED + "Could not find player " + args[0] + "!");
                     return true;
@@ -48,16 +48,15 @@ public class Mute implements CommandExecutor{
             Bukkit.getServer().broadcastMessage(prefix + ChatColor.YELLOW + "Player " + target.getName() + " has been muted by " + sender.getName() + "!");
 		}
 	}
-	}
 		return false;
 }
 
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e){
 			Player p = e.getPlayer();
-			if (!p.hasPermission("bc.mutebypass") && (muted.contains(p)))
-				p.sendMessage(prefix + ChatColor.RED + "You are currently muted!");
+			if ((muted.contains(p)))
 				e.setCancelled(true);
+				p.sendMessage(prefix + ChatColor.RED + "You are currently muted!");
 				return;
 			}
 }
