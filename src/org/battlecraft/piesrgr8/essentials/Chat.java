@@ -14,30 +14,30 @@ public class Chat implements Listener {
 	public Chat(BattlecraftServer p) {
 		this.plugin = p;
 	}
-
+	
 	@EventHandler
 	public void chat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 
-		if (p.isOp() && p.hasPermission("bc.prefix.owner")) {
+		if (p.hasPermission("bc.prefix.owner") && p.isOp()) {
 			e.setFormat(ChatColor.DARK_RED + "" + ChatColor.BOLD + "OWNER " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.cowner")) {
+		} else if (p.hasPermission("bc.prefix.cowner") && p.isOp()) {
 			e.setFormat(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "CO-OWNER " + ChatColor.YELLOW + p.getName()
 					+ " " + ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.dev")) {
+		} else if (p.hasPermission("bc.prefix.dev")&& p.isOp()) {
 			e.setFormat(ChatColor.RED + "" + ChatColor.BOLD + "DEV " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.admin")) {
+		} else if (p.hasPermission("bc.prefix.admin") && p.isOp()) {
 			e.setFormat(ChatColor.RED + "" + ChatColor.BOLD + "ADMIN " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.mod")) {
+		} else if (p.hasPermission("bc.prefix.mod") && p.isOp()) {
 			e.setFormat(ChatColor.GOLD + "" + ChatColor.BOLD + "MOD " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.helper")) {
+		} else if (p.hasPermission("bc.prefix.helper") && p.isOp()) {
 			e.setFormat(ChatColor.GREEN + "" + ChatColor.BOLD + "HELPER " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
-		} else if (p.isOp() && p.hasPermission("bc.prefix.builder")) {
+		} else if (p.hasPermission("bc.prefix.builder") && p.isOp()) {
 			e.setFormat(ChatColor.BLUE + "" + ChatColor.BOLD + "BUILDER " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		} else {

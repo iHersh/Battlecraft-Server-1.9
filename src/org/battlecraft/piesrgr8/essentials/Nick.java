@@ -1,10 +1,16 @@
 package org.battlecraft.piesrgr8.essentials;
 
-public class Nick {
-	
-}
+import java.io.File;
+import java.io.IOException;
 
-	/*
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+
+public class Nick implements CommandExecutor{
+
 	static File f = new File("plugins/BattlecraftServer/players.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 	
@@ -38,19 +44,15 @@ public class Nick {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				return true;
 			}
 		}
 		return true;
 	}
 	
 	public static void nickname(Player p) {
-		if (p.isOp()) {
-			return;
-		}
-		
 		if (yaml.contains(p.getName() + ".nick")) {
 			p.setDisplayName(yaml.getString(p.getName() + ".nick"));
 		}
 	}
 }
-	*/

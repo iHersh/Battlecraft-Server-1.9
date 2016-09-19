@@ -81,7 +81,7 @@ public class StaffCommand implements CommandExecutor {
 					List<String> jobs = new ArrayList<String>();
 					jobs = yaml.getStringList(p.getName() + ".jobs");
 					if (jobs != null) {
-						if (jobs.size() >= 1) {
+						if (jobs.size() > 0) {
 							Debug.debugConsole("A player used /staff job and they have jobs currently available!");
 							p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.GREEN
 									+ "You have jobs that are currently available!");

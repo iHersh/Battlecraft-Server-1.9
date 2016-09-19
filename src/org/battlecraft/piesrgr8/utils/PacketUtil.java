@@ -20,7 +20,7 @@ public class PacketUtil implements Listener {
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 			public void run() {
 				TitleManager.sendTitle(p.getPlayer(), ChatColor.translateAlternateColorCodes('&', "&c&lBATTLECRAFT"), 
-						ChatColor.translateAlternateColorCodes('&', "&aWelcome to the server, " + p.getName()), 70);
+						ChatColor.translateAlternateColorCodes('&', "&aWelcome to the server, " + p.getName()), 40);
 			}
 		}, 20);
 	}

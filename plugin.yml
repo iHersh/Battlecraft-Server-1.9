@@ -54,13 +54,15 @@ commands:
     description: Kick players.
   kit:
     description: Gives kits to players.
+  kiosk:
+    description: Opens a menu for recently bought items.
   maintenance:
     description: Start maintenance.
   menu:
     description: Shows the menu for teleporting.
   mute:
     description: Mute players.
-  nick:
+  nickname:
     description: Set a nickname for yourself.
   particle:
     description: Get particles.
@@ -78,6 +80,8 @@ commands:
     description: Save worlds.
   scan:
     description: Scan for entities.
+  send:
+    description: Send different messages.
   sethub:
     description: Set the hub!
   setwarp:
@@ -90,6 +94,8 @@ commands:
     description: This is a command for the staff team!
   sword:
     description: Gives a sword to defend a player!
+  tell:
+    description: Tell players a secret or something.
   test:
     description: Piesrgr8 tests methods with this command!
   tp:
