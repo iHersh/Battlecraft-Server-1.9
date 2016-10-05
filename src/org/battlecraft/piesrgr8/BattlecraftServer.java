@@ -30,6 +30,11 @@ import org.battlecraft.piesrgr8.shop.ShopMaterialStone;
 import org.battlecraft.piesrgr8.shop.ShopMaterialWood;
 import org.battlecraft.piesrgr8.shop.ShopTool;
 import org.battlecraft.piesrgr8.staff.StaffList;
+import org.battlecraft.piesrgr8.stats.BlockBreaks;
+import org.battlecraft.piesrgr8.stats.DamageTaken;
+import org.battlecraft.piesrgr8.stats.Deaths;
+import org.battlecraft.piesrgr8.stats.ItemCreations;
+import org.battlecraft.piesrgr8.stats.Kills;
 import org.battlecraft.piesrgr8.utils.Cooldown;
 import org.battlecraft.piesrgr8.utils.Dynamicmotd;
 import org.battlecraft.piesrgr8.utils.PacketUtil;
@@ -106,6 +111,9 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 	
 	public static String prefixInv = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Inv" + ChatColor.GRAY + "] ";
+	
+	public static String prefixStats = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
+			+ "" + ChatColor.BOLD + "Stats" + ChatColor.GRAY + "] ";
 
 	public static String prefixCooldown = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "" + ChatColor.BOLD + "COOLDOWN"
 			+ ChatColor.GRAY + "] ";
@@ -153,7 +161,13 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new PlayerTp(this), this);
 		pm.registerEvents(new Launchers(this), this);
 		pm.registerEvents(new Chat(this), this);
-
+		
+		// FOR STATS
+		pm.registerEvents(new Kills(this), this);
+		pm.registerEvents(new Deaths(this), this);
+		pm.registerEvents(new ItemCreations(this), this);
+		pm.registerEvents(new DamageTaken(this), this);
+		pm.registerEvents(new BlockBreaks(this), this);
 		// FOR SHOP
 		pm.registerEvents(new Shop(this), this);
 		pm.registerEvents(new ShopMaterial(this), this);

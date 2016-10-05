@@ -11,8 +11,8 @@ import org.bukkit.entity.Player;
 
 public class Nick implements CommandExecutor{
 
-	static File f = new File("plugins/BattlecraftServer/players.yml");
-	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
+	File f = new File("plugins/BattlecraftServer/players.yml");
+	YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("nickname")) {
@@ -37,7 +37,11 @@ public class Nick implements CommandExecutor{
 					bc = (bc + message + "");
 				}
 				p.sendMessage("Successfully set nick name!");
+				
+				if (!yaml.contains(p.getName() + ".nick")) {
 				yaml.createSection(p.getName() + ".nick");
+				}
+				
 				yaml.set(p.getName() + ".nick", bc);
 				try {
 					yaml.save(f);
@@ -48,11 +52,5 @@ public class Nick implements CommandExecutor{
 			}
 		}
 		return true;
-	}
-	
-	public static void nickname(Player p) {
-		if (yaml.contains(p.getName() + ".nick")) {
-			p.setDisplayName(yaml.getString(p.getName() + ".nick"));
-		}
 	}
 }

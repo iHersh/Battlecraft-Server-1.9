@@ -24,6 +24,7 @@ import org.battlecraft.piesrgr8.punish.Punishing;
 import org.battlecraft.piesrgr8.punish.Unmute;
 import org.battlecraft.piesrgr8.shop.Kiosk;
 import org.battlecraft.piesrgr8.staff.StaffCommand;
+import org.battlecraft.piesrgr8.stats.StatsManager;
 import org.battlecraft.piesrgr8.support.Issue;
 import org.battlecraft.piesrgr8.support.Report;
 import org.battlecraft.piesrgr8.utils.ClickChat;
@@ -89,7 +90,9 @@ public class Commands implements CommandExecutor{
 		plugin.getCommand("setwarp").setExecutor(new Teleportation());
 		plugin.getCommand("spam").setExecutor(new Spammer(plugin));
 		plugin.getCommand("spawn").setExecutor(new Hub(plugin));
+		plugin.getCommand("spawner").setExecutor(new WorldHandler(plugin));
 		plugin.getCommand("staff").setExecutor(new StaffCommand());
+		plugin.getCommand("stats").setExecutor(new StatsManager(plugin));
         plugin.getCommand("sword").setExecutor(new Weapons(plugin));
         plugin.getCommand("tell").setExecutor(new Tell());
         plugin.getCommand("test").setExecutor(new Test(plugin));

@@ -90,8 +90,12 @@ commands:
     description: Spam a certain message.
   spawn:
     description: Spawn in the hub.
+  spawner:
+    description: Spawn things.
   staff:
     description: This is a command for the staff team!
+  stats:
+    description: Check out your stats!
   sword:
     description: Gives a sword to defend a player!
   tell:

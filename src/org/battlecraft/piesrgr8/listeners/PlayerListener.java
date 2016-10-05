@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.battlecraft.piesrgr8.essentials.PlayerTp;
 import org.battlecraft.piesrgr8.staff.StaffList;
+import org.battlecraft.piesrgr8.stats.StatsManager;
 import org.battlecraft.piesrgr8.utils.PacketUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -55,6 +56,8 @@ public class PlayerListener implements Listener {
 		if (p.hasPermission("bc.staff")) {
 			StaffList.player.add(p);
 		}
+		
+		StatsManager.createStats(p);
 		
 		PlayerTp.players.add(p.getName());
 		motd(p);

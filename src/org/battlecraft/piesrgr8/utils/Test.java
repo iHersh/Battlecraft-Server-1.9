@@ -1,7 +1,5 @@
 package org.battlecraft.piesrgr8.utils;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
@@ -11,7 +9,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +21,8 @@ public class Test implements Listener, CommandExecutor {
 
 	BattlecraftServer plugin;
 
+	public static ArrayList<ItemStack> list = new ArrayList<>();
+	
 	public Test(BattlecraftServer p) {
 		this.plugin = p;
 	}
@@ -39,9 +38,6 @@ public class Test implements Listener, CommandExecutor {
 
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
-		File f = new File("plugins//BattlecraftServer//Kiosk//" + e.getPlayer().getName() + ".yml");
-		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
-		ArrayList<ItemStack> list = new ArrayList<>();
 		Player p = e.getPlayer();
 		if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
 			return;
@@ -54,13 +50,7 @@ public class Test implements Listener, CommandExecutor {
 				p.sendMessage("Item doesnt exist!");
 				e1.printStackTrace();
 			}
-			try {
 				list.add(new ItemStack(Material.getMaterial(s.getLine(1))));
-				yaml.set("Bought", list);
-				yaml.save(f);
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
 		}
 	}
 
@@ -73,6 +63,7 @@ public class Test implements Listener, CommandExecutor {
 
 			if (args.length == 0) {
 				sender.sendMessage("This class is testing buy signs and sell signs!");
+				sender.sendMessage("ItemStack Size: " + list.size());
 				return true;
 			}
 		}

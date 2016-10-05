@@ -1,15 +1,23 @@
 package org.battlecraft.piesrgr8.essentials;
 
+import java.io.File;
+
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+
 public class Chat implements Listener {
 
 	BattlecraftServer plugin;
+	
+	File f = new File("plugins/BattlecraftServer/players.yml");
+	YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 
 	public Chat(BattlecraftServer p) {
 		this.plugin = p;
@@ -18,7 +26,15 @@ public class Chat implements Listener {
 	@EventHandler
 	public void chat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
+		
+		if (yaml.contains(p.getName() + ".nick")) {
+			p.setDisplayName("*" + ChatColor.translateAlternateColorCodes('&', yaml.getString(p.getName() + ".nick")));
+		}
+		
+		e.setFormat(ChatColor.translateAlternateColorCodes('&', PermissionsEx.getUser(p).getPrefix() + " " + p.getDisplayName() + " " +
+		ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage()));
 
+		/*
 		if (p.hasPermission("bc.prefix.owner") && p.isOp()) {
 			e.setFormat(ChatColor.DARK_RED + "" + ChatColor.BOLD + "OWNER " + ChatColor.YELLOW + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
@@ -95,6 +111,7 @@ public class Chat implements Listener {
 			e.setFormat(ChatColor.GRAY + "" + ChatColor.ITALIC + "Player " + ChatColor.RESET + p.getName() + " "
 					+ ChatColor.GRAY + "" + ChatColor.BOLD + "> " + ChatColor.RESET + e.getMessage());
 		}
+		*/
 	}
 
 }

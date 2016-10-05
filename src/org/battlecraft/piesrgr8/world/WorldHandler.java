@@ -85,6 +85,14 @@ public class WorldHandler implements Listener, CommandExecutor {
 			Player p = (Player) sender;
 			String world = p.getLocation().getWorld().getName();
 			p.sendMessage(BattlecraftServer.prefixWorld + ChatColor.GREEN + "You are in this world: " + world);
+			return true;
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("spawner")) {
+			Player p = (Player) sender;
+			p.getWorld().strikeLightning(p.getLocation());
+			p.sendMessage("STRIKE!");
+			return true;
 		}
 		return true;
 	}
