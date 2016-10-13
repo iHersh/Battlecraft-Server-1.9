@@ -3,6 +3,7 @@ package org.battlecraft.piesrgr8.world;
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.battlecraft.piesrgr8.hub.HubInv;
 import org.battlecraft.piesrgr8.inventory.RestoreInventory;
+import org.battlecraft.piesrgr8.utils.ScoreboardMg;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -44,24 +45,26 @@ public class WorldHandler implements Listener, CommandExecutor {
 			p.sendMessage(BattlecraftServer.prefixMain + ChatColor.YELLOW
 					+ "You left the Creative world! Inventory Cleared!");
 		}
-		
+
 		if (p.getWorld().getName().equals("Hub1")) {
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
 					RestoreInventory.saveInventory(p);
 					HubInv.hubInv(p);
+					ScoreboardMg.createBoard(p);
 				}
 			}, 10);
 		} else if (e.getFrom().getName().equals("Hub1")) {
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
 					RestoreInventory.loadInventory(p);
+					ScoreboardMg.removeBoard(p);
 				}
 			}, 10);
 		}
 		return;
 	}
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		final Player p = e.getPlayer();
@@ -69,9 +72,10 @@ public class WorldHandler implements Listener, CommandExecutor {
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
 					RestoreInventory.saveInventory(p);
+					ScoreboardMg.createBoard(p);
 				}
 			}, 35);
-			
+
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
 					HubInv.hubInv(p);
@@ -87,7 +91,7 @@ public class WorldHandler implements Listener, CommandExecutor {
 			p.sendMessage(BattlecraftServer.prefixWorld + ChatColor.GREEN + "You are in this world: " + world);
 			return true;
 		}
-		
+
 		if (cmd.getName().equalsIgnoreCase("spawner")) {
 			Player p = (Player) sender;
 			p.getWorld().strikeLightning(p.getLocation());

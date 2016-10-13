@@ -55,16 +55,16 @@ public class StatsManager implements CommandExecutor {
 							+ ChatColor.YELLOW + yaml.getInt("stats.itemcreations") + ChatColor.GREEN + " items!");
 					return true;
 				}
-				
+
 				if (args[0].equalsIgnoreCase("damage1")) {
-					p.sendMessage(BattlecraftServer.prefixStats + ChatColor.GREEN + "You have dealt "
-							+ ChatColor.YELLOW + yaml.getInt("stats.damagedelt") + ChatColor.GREEN + " damage!");
+					p.sendMessage(BattlecraftServer.prefixStats + ChatColor.GREEN + "You have dealt " + ChatColor.YELLOW
+							+ yaml.getInt("stats.damagedelt") + ChatColor.GREEN + " damage!");
 					return true;
 				}
-				
+
 				if (args[0].equalsIgnoreCase("blocks")) {
-					p.sendMessage(BattlecraftServer.prefixStats + ChatColor.GREEN + "You have broke "
-							+ ChatColor.YELLOW + yaml.getInt("stats.blockbreaks") + ChatColor.GREEN + " blocks!");
+					p.sendMessage(BattlecraftServer.prefixStats + ChatColor.GREEN + "You have broke " + ChatColor.YELLOW
+							+ yaml.getInt("stats.blockbreaks") + ChatColor.GREEN + " blocks!");
 					return true;
 				}
 			}

@@ -7,16 +7,16 @@ import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Spawning {
-	
+
 	BattlecraftServer plugin;
-	
+
 	static File f = new File("plugins/BattlecraftServer/spawns.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
-	
+
 	public Spawning(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public static void saveSpawnYaml(BattlecraftServer plugin) {
 		if (!new File(plugin.getDataFolder(), "spawns.yml").exists()) {
 			try {
@@ -31,7 +31,7 @@ public class Spawning {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void saveWarpYaml(BattlecraftServer plugin) {
 		if (!new File(plugin.getDataFolder(), "warps.yml").exists()) {
 			try {

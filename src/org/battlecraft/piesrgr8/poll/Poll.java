@@ -61,9 +61,10 @@ public class Poll implements CommandExecutor, Listener {
 			}
 
 			if (args.length == 1) {
-				
+
 				if (args[0].equalsIgnoreCase("results")) {
-					p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN + votes.values() + " votes in total!");
+					p.sendMessage(
+							BattlecraftServer.prefixPolls + ChatColor.GREEN + votes.values() + " votes in total!");
 					return true;
 				}
 
@@ -72,7 +73,8 @@ public class Poll implements CommandExecutor, Listener {
 						votes.put("yes", votes.get("yes") + 1);
 						p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN + "You chose to "
 								+ ChatColor.YELLOW + "agree" + ChatColor.GREEN + " with this change!");
-						p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN + "We are thankful for your response!");
+						p.sendMessage(
+								BattlecraftServer.prefixPolls + ChatColor.GREEN + "We are thankful for your response!");
 						player.add(p);
 						registerYaml1(p);
 						return true;
@@ -82,7 +84,8 @@ public class Poll implements CommandExecutor, Listener {
 						votes.put("no", votes.get("no") + 1);
 						p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN + "You chose to "
 								+ ChatColor.YELLOW + "disagree" + ChatColor.GREEN + " with this change!");
-						p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN + "We would love to know exactly what is wrong"
+						p.sendMessage(BattlecraftServer.prefixPolls + ChatColor.GREEN
+								+ "We would love to know exactly what is wrong"
 								+ " with our plugin. Please report it to a staff member or on our website!");
 						player.add(p);
 						registerYaml2(p);

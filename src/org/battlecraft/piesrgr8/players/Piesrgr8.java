@@ -26,9 +26,10 @@ public class Piesrgr8 implements Listener {
 
 		if (e.getPlayer().getName().equals("Piesrgr8")) {
 			e.setJoinMessage(ChatColor.BLUE + e.getPlayer().getName() + ChatColor.GOLD + " has joined the server!");
-			
+
 			for (Player pl : Bukkit.getOnlinePlayers()) {
-				PacketUtil.sendActionMsg(plugin, pl, ChatColor.BLUE + "Piesrgr8: " + ChatColor.GOLD + "Im here to save the day!");
+				PacketUtil.sendActionMsg(plugin, pl,
+						ChatColor.BLUE + "Piesrgr8: " + ChatColor.GOLD + "Im here to save the day!");
 			}
 		}
 	}

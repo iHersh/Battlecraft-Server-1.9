@@ -15,14 +15,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class Kiosk implements Listener, CommandExecutor{
-	
+public class Kiosk implements Listener, CommandExecutor {
+
 	BattlecraftServer plugin;
-	
+
 	public Kiosk(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kiosk")) {
 			if (!(sender instanceof Player)) {
@@ -36,22 +36,22 @@ public class Kiosk implements Listener, CommandExecutor{
 		}
 		return true;
 	}
-	
+
 	public static void openGUI(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BLUE + "Kiosk");
 
 		// Creating the items and registering them.
-		
+
 		for (int i = 0; i < Test.list.size(); i++) {
 			if (i == 9) {
 				break;
 			}
-		inv.setItem(i, (ItemStack) Test.list.get(i));
+			inv.setItem(i, (ItemStack) Test.list.get(i));
 		}
-		
+
 		p.openInventory(inv);
 	}
-	
+
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Kiosk"))

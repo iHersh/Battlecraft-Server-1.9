@@ -49,23 +49,24 @@ public class Teleportation implements CommandExecutor {
 								+ ChatColor.YELLOW + tar.getName());
 						return true;
 					}
-				if (args[0].equalsIgnoreCase("all")) {
+					if (args[0].equalsIgnoreCase("all")) {
 						tar.teleport(p.getLocation());
 						tar.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported everyone to "
 								+ ChatColor.YELLOW + p.getName() + "'s " + ChatColor.GREEN + "position!");
 						p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported everyone!");
 						return true;
 					}
-				World w = p.getWorld();
-				Location loc = new Location(w, Double.parseDouble(args[0]), Double.parseDouble(args[1]), Double.parseDouble(args[2]));
-				p.teleport(loc);
-				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported to "
-						+ ChatColor.YELLOW + args[0] + ", " + args[1] + ", " + args[2] + "!");
-				return true;
+					World w = p.getWorld();
+					Location loc = new Location(w, Double.parseDouble(args[0]), Double.parseDouble(args[1]),
+							Double.parseDouble(args[2]));
+					p.teleport(loc);
+					p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW
+							+ args[0] + ", " + args[1] + ", " + args[2] + "!");
+					return true;
 				}
 			}
 		}
-		
+
 		if (cmd.getName().equalsIgnoreCase("tphere")) {
 			if (!(sender instanceof Player)) {
 				sender.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "You are not a player!");
@@ -77,8 +78,7 @@ public class Teleportation implements CommandExecutor {
 				return true;
 			}
 			if (args.length == 0) {
-				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED
-						+ "Arguments are: /tphere <player>");
+				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "Arguments are: /tphere <player>");
 				return true;
 			}
 			if (args.length >= 1) {

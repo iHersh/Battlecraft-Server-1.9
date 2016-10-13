@@ -19,16 +19,14 @@ public class Kit {
 			+ ChatColor.WHITE;
 	static String vip2 = ChatColor.GRAY + "[" + ChatColor.GOLD + "+" + ChatColor.GREEN + "VIP" + ChatColor.GOLD + "+"
 			+ ChatColor.GRAY + "] " + ChatColor.WHITE;
-	static String master = ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MASTER" 
-			+ ChatColor.GRAY + "] " + ChatColor.WHITE;
-	static String premium = ChatColor.GRAY + "[" + "PREMIUM"
-			+ ChatColor.GRAY + "] " + ChatColor.WHITE;
-	static String staff = ChatColor.GOLD + "[" + ChatColor.DARK_BLUE + "STAFF"
-			+ ChatColor.GOLD + "] " + ChatColor.WHITE;
-	static String yt = ChatColor.GRAY + "[" + ChatColor.WHITE + "Y" + ChatColor.RED + "T"
-			+ ChatColor.GRAY + "] " + ChatColor.WHITE;
-	static String op = ChatColor.GRAY + "[" + ChatColor.RED + "OP" 
-			+ ChatColor.GRAY + "] " + ChatColor.WHITE;
+	static String master = ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "MASTER" + ChatColor.GRAY + "] "
+			+ ChatColor.WHITE;
+	static String premium = ChatColor.GRAY + "[" + "PREMIUM" + ChatColor.GRAY + "] " + ChatColor.WHITE;
+	static String staff = ChatColor.GOLD + "[" + ChatColor.DARK_BLUE + "STAFF" + ChatColor.GOLD + "] "
+			+ ChatColor.WHITE;
+	static String yt = ChatColor.GRAY + "[" + ChatColor.WHITE + "Y" + ChatColor.RED + "T" + ChatColor.GRAY + "] "
+			+ ChatColor.WHITE;
+	static String op = ChatColor.GRAY + "[" + ChatColor.RED + "OP" + ChatColor.GRAY + "] " + ChatColor.WHITE;
 
 	public static void starter(Player p) {
 		Inventory inv = p.getInventory();
@@ -141,7 +139,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void vip2(Player p) {
 		Inventory inv = p.getInventory();
 
@@ -181,7 +179,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void master(Player p) {
 		Inventory inv = p.getInventory();
 
@@ -214,7 +212,7 @@ public class Kit {
 		item2.addEnchantment(Enchantment.PROTECTION_FIRE, 2);
 		item3.addEnchantment(Enchantment.PROTECTION_FIRE, 2);
 		item4.addEnchantment(Enchantment.PROTECTION_FIRE, 2);
-		
+
 		item5.addEnchantment(Enchantment.DIG_SPEED, 5);
 		item5.addEnchantment(Enchantment.DURABILITY, 3);
 		item5.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
@@ -229,7 +227,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void premium(Player p) {
 		Inventory inv = p.getInventory();
 
@@ -276,7 +274,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void staff(Player p) {
 		Inventory inv = p.getInventory();
 
@@ -316,7 +314,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void yt(Player p) {
 		Inventory inv = p.getInventory();
 
@@ -356,7 +354,7 @@ public class Kit {
 		inv.addItem(item5);
 		inv.addItem(item6);
 	}
-	
+
 	public static void op(Player p) {
 		Inventory inv = p.getInventory();
 

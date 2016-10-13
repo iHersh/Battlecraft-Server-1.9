@@ -45,8 +45,7 @@ public class Rulebook {
 				+ "If you want to send in a map for a game, then send it to us in the forums on our website!");
 		meta.addPage(ChatColor.LIGHT_PURPLE + "Website!" + "\n" + "\n" + ChatColor.BLACK
 				+ "Our website will contain about everything that you want to do. From forums, to the shop. Have at it!"
-				+ "\n" + "\n"
-				+ "www.bcpvp101.enjin.com");
+				+ "\n" + "\n" + "www.bcpvp101.enjin.com");
 
 		book.setItemMeta(meta);
 

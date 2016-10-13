@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,9 +28,9 @@ import net.minecraft.server.v1_9_R2.PacketPlayOutWorldParticles;
 public class Guns implements Listener {
 
 	public ArrayList<Projectile> arrows = new ArrayList<Projectile>();
-	
+
 	BattlecraftServer plugin;
-	
+
 	public Guns(BattlecraftServer p) {
 		this.plugin = p;
 	}
@@ -59,6 +60,10 @@ public class Guns implements Listener {
 		if (!e.getBow().hasItemMeta()) {
 			return;
 		}
+		
+		if (!e.getBow().getItemMeta().getDisplayName().contains(ChatColor.stripColor("RARE"))) {
+			return;
+		}
 		arrows.add((Projectile) e.getProjectile());
 		addParticleEffect((Projectile) e.getProjectile());
 	}
@@ -76,19 +81,17 @@ public class Guns implements Listener {
 
 			@Override
 			public void run() {
-				for(Projectile arrows : arrows){
-                    for(Player online : Bukkit.getOnlinePlayers()){
-                        Location loc = arrows.getLocation();
-                        ((CraftPlayer) online).getHandle().playerConnection
-                                .sendPacket(new PacketPlayOutWorldParticles(
-                                        EnumParticle.DRAGON_BREATH, true, (float) loc.getX(),
-                                        (float) loc.getY(), (float) loc.getZ(), 1,
-                                        1, 1,(float) 0, 6));
-                    }
-                    }
-                }
- 
-        }, 0, 1);
-    }
+				for (Projectile arrows : arrows) {
+					for (Player online : Bukkit.getOnlinePlayers()) {
+						Location loc = arrows.getLocation();
+						((CraftPlayer) online).getHandle().playerConnection.sendPacket(
+								new PacketPlayOutWorldParticles(EnumParticle.DRAGON_BREATH, true, (float) loc.getX(),
+										(float) loc.getY(), (float) loc.getZ(), 1, 1, 1, (float) 0, 6));
+					}
+				}
+			}
+
+		}, 0, 1);
+	}
 
 }

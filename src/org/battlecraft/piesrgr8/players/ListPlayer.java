@@ -17,7 +17,7 @@ public class ListPlayer implements CommandExecutor {
 	public ListPlayer(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public static void savePlayerList(BattlecraftServer plugin) {
 		if (!new File(plugin.getDataFolder(), "players.yml").exists()) {
 			try {
@@ -65,7 +65,8 @@ public class ListPlayer implements CommandExecutor {
 							return true;
 						}
 						plugin.getConfig().getStringList("players").add(target.getName());
-						sender.sendMessage(BattlecraftServer.prefixMain + "Target " + target.getName() + " has been added to the list!");
+						sender.sendMessage(BattlecraftServer.prefixMain + "Target " + target.getName()
+								+ " has been added to the list!");
 					}
 					if (args[1].equalsIgnoreCase("remove")) {
 						if (!plugin.getConfig().getStringList("players").contains(target)) {
@@ -74,7 +75,8 @@ public class ListPlayer implements CommandExecutor {
 							return true;
 						}
 						plugin.getConfig().getStringList("players").remove(target.getName());
-						sender.sendMessage(BattlecraftServer.prefixMain + "Target " + target.getName() + " has been removed from the list!");
+						sender.sendMessage(BattlecraftServer.prefixMain + "Target " + target.getName()
+								+ " has been removed from the list!");
 					}
 				}
 			}

@@ -11,25 +11,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 
 public class ItemCreations implements Listener {
-	
-BattlecraftServer plugin;
-	
+
+	BattlecraftServer plugin;
+
 	public ItemCreations(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	@EventHandler
 	public void onCreation(CraftItemEvent e) {
-		
+
 		Player p = (Player) e.getWhoClicked();
-		
+
 		File f = new File("plugins//BattlecraftServer//stats//" + p.getName() + ".yml");
 		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
-			yaml.set("stats.itemcreations", yaml.getInt("stats.itemcreations") + 1);
-			try {
-				yaml.save(f);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+		yaml.set("stats.itemcreations", yaml.getInt("stats.itemcreations") + 1);
+		try {
+			yaml.save(f);
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
+}

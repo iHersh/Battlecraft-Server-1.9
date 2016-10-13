@@ -75,7 +75,7 @@ public class Shop implements Listener {
 
 		sb1.setDisplayName(ChatColor.GRAY + "Misc");
 		sb.setItemMeta(sb1);
-		
+
 		custom1.setDisplayName(" ");
 		custom.setItemMeta(custom1);
 
@@ -148,7 +148,6 @@ public class Shop implements Listener {
 		inv.setItem(52, custom);
 		inv.setItem(53, custom);
 
-		p.openInventory(inv);
 	}
 
 	@EventHandler
@@ -169,7 +168,7 @@ public class Shop implements Listener {
 		case BRICK:
 			ShopMaterial.openGUI(p);
 			break;
-			
+
 		case IRON_PICKAXE:
 			ShopTool.openGUI(p);
 			break;

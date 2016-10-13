@@ -40,7 +40,7 @@ public class Invisibility implements CommandExecutor {
 				p.sendMessage(prefix + ChatColor.GREEN + "All players are now hidden!");
 				vanish.add(p);
 				return true;
-				
+
 			} else {
 				return false;
 			}

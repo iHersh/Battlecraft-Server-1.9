@@ -11,19 +11,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class Deaths implements Listener {
-	
-BattlecraftServer plugin;
-	
+
+	BattlecraftServer plugin;
+
 	public Deaths(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity().getPlayer();
 		File f = new File("plugins//BattlecraftServer//stats//" + p.getName() + ".yml");
 		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
-		
+
 		if (p.isDead()) {
 			yaml.set("stats.deaths", yaml.getInt("stats.deaths") + 1);
 			try {

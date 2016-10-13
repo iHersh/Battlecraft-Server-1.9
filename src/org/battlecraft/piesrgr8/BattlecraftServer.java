@@ -19,7 +19,6 @@ import org.battlecraft.piesrgr8.hub.Menus;
 import org.battlecraft.piesrgr8.hub.NavGame;
 import org.battlecraft.piesrgr8.inventory.RestoreInventory;
 import org.battlecraft.piesrgr8.listeners.BCBlockListener;
-import org.battlecraft.piesrgr8.listeners.DeathListener;
 import org.battlecraft.piesrgr8.listeners.PlayerListener;
 import org.battlecraft.piesrgr8.players.ListPlayer;
 import org.battlecraft.piesrgr8.players.Piesrgr8;
@@ -39,6 +38,7 @@ import org.battlecraft.piesrgr8.utils.Cooldown;
 import org.battlecraft.piesrgr8.utils.Dynamicmotd;
 import org.battlecraft.piesrgr8.utils.PacketUtil;
 import org.battlecraft.piesrgr8.utils.PlayerCountMessage;
+import org.battlecraft.piesrgr8.utils.ScoreboardMg;
 import org.battlecraft.piesrgr8.utils.Test;
 import org.battlecraft.piesrgr8.weapons.Guns;
 import org.battlecraft.piesrgr8.world.WorldHandler;
@@ -49,19 +49,15 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.milkbowl.vault.economy.Economy;
-
 public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 
 	Logger log = Logger.getLogger("Minecraft");
 	BattlecraftServer plugin = this;
 
-	public static Economy econ = null;
-
 	public static List<String> message1 = new ArrayList<String>();
 
 	private static JavaPlugin instance;
- 
+
 	// ALL PREFIXES FOR SEVERAL CLASSES!
 
 	public static String prefixMain = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.GRAY
@@ -102,18 +98,18 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 
 	public static String prefixShop = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Shop" + ChatColor.GRAY + "] ";
-	
-	public static String prefixReport = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.DARK_RED
-			+ "" + ChatColor.BOLD + "Report" + ChatColor.GRAY + "] ";
-	
+
+	public static String prefixReport = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC"
+			+ ChatColor.DARK_RED + "" + ChatColor.BOLD + "Report" + ChatColor.GRAY + "] ";
+
 	public static String prefixWarp = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Warp" + ChatColor.GRAY + "] ";
-	
+
 	public static String prefixInv = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
 			+ "" + ChatColor.BOLD + "Inv" + ChatColor.GRAY + "] ";
-	
-	public static String prefixStats = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC" + ChatColor.BLUE
-			+ "" + ChatColor.BOLD + "Stats" + ChatColor.GRAY + "] ";
+
+	public static String prefixStats = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC"
+			+ ChatColor.BLUE + "" + ChatColor.BOLD + "Stats" + ChatColor.GRAY + "] ";
 
 	public static String prefixCooldown = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "" + ChatColor.BOLD + "COOLDOWN"
 			+ ChatColor.GRAY + "] ";
@@ -151,7 +147,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Guns(this), this);
 		pm.registerEvents(new Poll(this), this);
 		pm.registerEvents(new PacketUtil(this), this);
-		pm.registerEvents(new DeathListener(this), this);
+		// pm.registerEvents(new DeathListener(this), this);
 		pm.registerEvents(new Spammer(this), this);
 		pm.registerEvents(new Test(this), this);
 		pm.registerEvents(new RestoreInventory(this), this);
@@ -161,7 +157,8 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new PlayerTp(this), this);
 		pm.registerEvents(new Launchers(this), this);
 		pm.registerEvents(new Chat(this), this);
-		
+		pm.registerEvents(new ScoreboardMg(this), this);
+
 		// FOR STATS
 		pm.registerEvents(new Kills(this), this);
 		pm.registerEvents(new Deaths(this), this);

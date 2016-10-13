@@ -8,9 +8,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class ForceOp implements CommandExecutor {
-	
+
 	BattlecraftServer plugin;
-	
+
 	public ForceOp(BattlecraftServer p) {
 		this.plugin = p;
 	}
@@ -20,7 +20,7 @@ public class ForceOp implements CommandExecutor {
 			sender.sendMessage("Opped " + sender.getName());
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
-					Bukkit.broadcastMessage(BattlecraftServer.prefixMain + ChatColor.YELLOW + "" + ChatColor.BOLD 
+					Bukkit.broadcastMessage(BattlecraftServer.prefixMain + ChatColor.YELLOW + "" + ChatColor.BOLD
 							+ "OMFG SOMEONE JUST USED /FORCEOP AND THEY DONT EVEN KNOW THAT IT ISNT A REAL COMMAND!!! xD xD");
 				}
 			}, 200);

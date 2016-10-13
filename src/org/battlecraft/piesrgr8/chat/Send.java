@@ -9,14 +9,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Send implements CommandExecutor{
-	
+public class Send implements CommandExecutor {
+
 	BattlecraftServer plugin;
-	
+
 	public Send(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("send")) {
 			if (!sender.hasPermission("bc.send")) {
@@ -47,18 +47,19 @@ public class Send implements CommandExecutor{
 					bc = (bc + message + " ");
 				}
 				for (Player on : Bukkit.getOnlinePlayers()) {
-				if (args[0].equalsIgnoreCase("title")) {
-					PacketUtil.sendTitle(plugin, on, bc, "");
-					return true;
-				}
-				if (args[0].equalsIgnoreCase("am")) {
-					PacketUtil.sendActionMsg(plugin, on, bc);
-					return true;
-				}
-				if (args[0].equalsIgnoreCase("bc")) {
-					Bukkit.broadcastMessage(BattlecraftServer.prefixMain + ChatColor.translateAlternateColorCodes('&', bc));
-					return true;
-				}
+					if (args[0].equalsIgnoreCase("title")) {
+						PacketUtil.sendTitle(plugin, on, bc, "");
+						return true;
+					}
+					if (args[0].equalsIgnoreCase("am")) {
+						PacketUtil.sendActionMsg(plugin, on, bc);
+						return true;
+					}
+					if (args[0].equalsIgnoreCase("bc")) {
+						Bukkit.broadcastMessage(
+								BattlecraftServer.prefixMain + ChatColor.translateAlternateColorCodes('&', bc));
+						return true;
+					}
 				}
 			}
 		}

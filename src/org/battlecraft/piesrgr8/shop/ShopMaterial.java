@@ -16,14 +16,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class ShopMaterial implements Listener{
-	
+public class ShopMaterial implements Listener {
+
 	BattlecraftServer plugin;
-	
+
 	public ShopMaterial(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static void openGUI(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 54, ChatColor.YELLOW + "Shop - Building Materials");
@@ -50,19 +50,19 @@ public class ShopMaterial implements Listener{
 
 		ItemStack sb = new ItemStack(Material.WOOD_STAIRS);
 		ItemMeta sb1 = sb.getItemMeta();
-		
+
 		ItemStack nb = new ItemStack(Material.PURPUR_BLOCK);
 		ItemMeta nb1 = nb.getItemMeta();
-		
+
 		ItemStack fn = new ItemStack(Material.FENCE);
 		ItemMeta fn1 = fn.getItemMeta();
-		
+
 		ItemStack un = new ItemStack(Material.SAND);
 		ItemMeta un1 = un.getItemMeta();
 
 		ItemStack custom = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLACK.getData());
 		ItemMeta custom1 = custom.getItemMeta();
-		
+
 		ItemStack back = new ItemStack(Material.ARROW);
 		ItemMeta back1 = back.getItemMeta();
 
@@ -70,48 +70,57 @@ public class ShopMaterial implements Listener{
 		// to the inventory.
 
 		main1.setDisplayName(ChatColor.YELLOW + "Wood");
-		main1.setLore(Arrays.asList(ChatColor.YELLOW + "All wood types!", ChatColor.GRAY + "Ex: Oak Wood, Oak Planks, Jungle Wood"));
+		main1.setLore(Arrays.asList(ChatColor.YELLOW + "All wood types!",
+				ChatColor.GRAY + "Ex: Oak Wood, Oak Planks, Jungle Wood"));
 		main.setItemMeta(main1);
 
 		mg1.setDisplayName(ChatColor.YELLOW + "Stone");
-		mg1.setLore(Arrays.asList(ChatColor.YELLOW + "All stone types!", ChatColor.GRAY + "Ex: Stone, Cobblestone, Stone Brick, Brick"));
+		mg1.setLore(Arrays.asList(ChatColor.YELLOW + "All stone types!",
+				ChatColor.GRAY + "Ex: Stone, Cobblestone, Stone Brick, Brick"));
 		mg.setItemMeta(mg1);
 
 		sw1.setDisplayName(ChatColor.YELLOW + "Resources");
-		sw1.setLore(Arrays.asList(ChatColor.YELLOW + "Mineable resources!", ChatColor.GRAY + "Ex: Gold, iron, diamond, emerald."));
+		sw1.setLore(Arrays.asList(ChatColor.YELLOW + "Mineable resources!",
+				ChatColor.GRAY + "Ex: Gold, iron, diamond, emerald."));
 		sw.setItemMeta(sw1);
 
 		hg1.setDisplayName(ChatColor.YELLOW + "Colored Wool");
-		hg1.setLore(Arrays.asList(ChatColor.YELLOW + "Wool with different colors!", ChatColor.GRAY + "Ex: Red wool, White wool, Blue wool."));
+		hg1.setLore(Arrays.asList(ChatColor.YELLOW + "Wool with different colors!",
+				ChatColor.GRAY + "Ex: Red wool, White wool, Blue wool."));
 		hg.setItemMeta(hg1);
 
 		fc1.setDisplayName(ChatColor.YELLOW + "Colored Clay");
-		fc1.setLore(Arrays.asList(ChatColor.YELLOW + "Clay with different colors!", ChatColor.GRAY + "Ex: Red clay, White clay, Blue clay."));
+		fc1.setLore(Arrays.asList(ChatColor.YELLOW + "Clay with different colors!",
+				ChatColor.GRAY + "Ex: Red clay, White clay, Blue clay."));
 		fc.setItemMeta(fc1);
 
 		gm1.setDisplayName(ChatColor.YELLOW + "Glass");
-		gm1.setLore(Arrays.asList(ChatColor.YELLOW + "Glass blocks or similar to glass!", ChatColor.GRAY + "Ex: Glass, Glass pane (Colored), Glowstone"));
+		gm1.setLore(Arrays.asList(ChatColor.YELLOW + "Glass blocks or similar to glass!",
+				ChatColor.GRAY + "Ex: Glass, Glass pane (Colored), Glowstone"));
 		gm.setItemMeta(gm1);
 
 		sb1.setDisplayName(ChatColor.YELLOW + "Stairs");
-		sb1.setLore(Arrays.asList(ChatColor.YELLOW + "Blocks used for walking up or down!", ChatColor.GRAY + "Ex: Oak Stair, Jungle stair, Birch stair."));
+		sb1.setLore(Arrays.asList(ChatColor.YELLOW + "Blocks used for walking up or down!",
+				ChatColor.GRAY + "Ex: Oak Stair, Jungle stair, Birch stair."));
 		sb.setItemMeta(sb1);
-		
+
 		nb1.setDisplayName(ChatColor.YELLOW + "New Blocks");
 		nb1.setLore(Arrays.asList(ChatColor.YELLOW + "Blocks in 1.9!", ChatColor.GRAY + "Ex: Purpur, Prismarine"));
 		nb.setItemMeta(nb1);
-		
+
 		un1.setDisplayName(ChatColor.YELLOW + "Uncategorized");
-		un1.setLore(Arrays.asList(ChatColor.YELLOW + "Blocks that haven't been categorized!", ChatColor.GRAY + "Ex: Sand, Gravel"));
+		un1.setLore(Arrays.asList(ChatColor.YELLOW + "Blocks that haven't been categorized!",
+				ChatColor.GRAY + "Ex: Sand, Gravel"));
 		un.setItemMeta(un1);
-		
+
 		fn1.setDisplayName(ChatColor.YELLOW + "Fences");
-		fn1.setLore(Arrays.asList(ChatColor.YELLOW + "Guard your base with these!", ChatColor.GRAY + "Ex: You know what I mean by 'fence'."));
+		fn1.setLore(Arrays.asList(ChatColor.YELLOW + "Guard your base with these!",
+				ChatColor.GRAY + "Ex: You know what I mean by 'fence'."));
 		fn.setItemMeta(fn1);
-		
+
 		back1.setDisplayName(ChatColor.RED + "Back");
 		back.setItemMeta(back1);
-		
+
 		custom1.setDisplayName(" ");
 		custom.setItemMeta(custom1);
 
@@ -186,7 +195,7 @@ public class ShopMaterial implements Listener{
 
 		p.openInventory(inv);
 	}
-	
+
 	@EventHandler
 	public void onInventoryClick1(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Shop - Building Materials"))
@@ -237,11 +246,11 @@ public class ShopMaterial implements Listener{
 		case SAND:
 			TitleManager.sendActionBar(p, ChatColor.RED + "This is not available in BETA!", 30);
 			break;
-			
+
 		case FENCE:
 			TitleManager.sendActionBar(p, ChatColor.RED + "This is not available in BETA!", 30);
 			break;
-			
+
 		case ARROW:
 			Shop.openGUI(p);
 			break;

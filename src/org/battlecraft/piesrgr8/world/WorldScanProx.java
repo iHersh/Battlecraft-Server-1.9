@@ -14,44 +14,46 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-public class WorldScanProx implements CommandExecutor{
-	
+public class WorldScanProx implements CommandExecutor {
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("scan")) {
-		if (!p.hasPermission("bc.scan")) {
-			p.sendMessage(BattlecraftServer.prefixWorld + ChatColor.RED + "You dont have permission to scan for entities!");
-			return true;
-		}
+			if (!p.hasPermission("bc.scan")) {
+				p.sendMessage(BattlecraftServer.prefixWorld + ChatColor.RED
+						+ "You dont have permission to scan for entities!");
+				return true;
+			}
 
 			p.setExp(p.getExp() - 15);
 			p.sendMessage("You lost experience from using this command!");
 
 			for (Entity en : getNearbyEntities(p.getLocation(), 10)) {
-				if (en == p || en.equals(EntityType.ITEM_FRAME) || en.equals(EntityType.SPECTRAL_ARROW) || en.equals(EntityType.ARROW))
+				if (en == p || en.equals(EntityType.ITEM_FRAME) || en.equals(EntityType.SPECTRAL_ARROW)
+						|| en.equals(EntityType.ARROW))
 					continue;
 				p.sendMessage(ChatColor.GOLD + "There is a " + ChatColor.YELLOW
 						+ (en instanceof Player ? ((Player) en).getName() : en.getType().name()) + ChatColor.GOLD
-						+ " at " + ChatColor.YELLOW + "X: " + ChatColor.YELLOW + en.getLocation().getBlockX()
-						+ ", " + ChatColor.YELLOW + "Y: " + ChatColor.YELLOW + en.getLocation().getBlockY()
-						+ ", " + ChatColor.YELLOW + "Z: " + ChatColor.YELLOW + en.getLocation().getBlockZ()
-						+ "!");
-				Arrow a = (Arrow) en.getLocation().getWorld().spawnEntity(en.getLocation().add(0, 4, 0), EntityType.SPECTRAL_ARROW);
+						+ " at " + ChatColor.YELLOW + "X: " + ChatColor.YELLOW + en.getLocation().getBlockX() + ", "
+						+ ChatColor.YELLOW + "Y: " + ChatColor.YELLOW + en.getLocation().getBlockY() + ", "
+						+ ChatColor.YELLOW + "Z: " + ChatColor.YELLOW + en.getLocation().getBlockZ() + "!");
+				Arrow a = (Arrow) en.getLocation().getWorld().spawnEntity(en.getLocation().add(0, 4, 0),
+						EntityType.SPECTRAL_ARROW);
 				a.setShooter(p);
 				a.setKnockbackStrength(0);
 				a.setCritical(false);
 				a.setSilent(true);
-				}
 			}
-	return true;
-}
+		}
+		return true;
+	}
 
-public List<Entity> getNearbyEntities(Location l, int size) {
-List<Entity> ent = new ArrayList<Entity>();
+	public List<Entity> getNearbyEntities(Location l, int size) {
+		List<Entity> ent = new ArrayList<Entity>();
 
-for (Entity e : l.getWorld().getEntities())
-	if (l.distance(e.getLocation()) <= size)
-		ent.add(e);
-return ent;
-}
+		for (Entity e : l.getWorld().getEntities())
+			if (l.distance(e.getLocation()) <= size)
+				ent.add(e);
+		return ent;
+	}
 }

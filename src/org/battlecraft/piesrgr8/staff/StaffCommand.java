@@ -48,17 +48,18 @@ public class StaffCommand implements CommandExecutor {
 					}
 					return true;
 				}
-				
+
 				if (args[0].equalsIgnoreCase("remove")) {
 					StaffList.removeStaff(p);
-					p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.GREEN + "Removed! If you ever want to have this system, do /staff register!");
+					p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.GREEN
+							+ "Removed! If you ever want to have this system, do /staff register!");
 					return true;
 				}
 
 				if (args[0].equalsIgnoreCase("list")) {
 					List<String> pl = new ArrayList<String>();
 					pl = yaml.getStringList("players");
-					if (pl!= null) {
+					if (pl != null) {
 						if (pl.size() >= 1) {
 							p.sendMessage(BattlecraftServer.prefixStaff + ChatColor.GREEN
 									+ "These are the players of honorary mention!");

@@ -15,31 +15,32 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerTp implements Listener {
-	
+
 	public static ArrayList<String> players = new ArrayList<String>();
-	
+
 	BattlecraftServer plugin;
-	
+
 	public PlayerTp(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public static void openGUI(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 18, ChatColor.YELLOW + "Player Teleportation");
 
-		for(int i = 0; i < players.size(); i++){ //Where players is an array of the players in-game
-			  String playerName = players.get(i);
-			  ItemStack item = new ItemStack(Material.SKULL_ITEM);
-			  ItemMeta meta = item.getItemMeta();
-			 
-			  meta.setDisplayName(playerName);
-			  item.setItemMeta(meta);
-			  inv.setItem(i, item);
-			}
+		for (int i = 0; i < players.size(); i++) { // Where players is an array
+													// of the players in-game
+			String playerName = players.get(i);
+			ItemStack item = new ItemStack(Material.SKULL_ITEM);
+			ItemMeta meta = item.getItemMeta();
+
+			meta.setDisplayName(playerName);
+			item.setItemMeta(meta);
+			inv.setItem(i, item);
+		}
 
 		p.openInventory(inv);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
@@ -54,12 +55,12 @@ public class PlayerTp implements Listener {
 			e.setCancelled(true);
 			return;
 		}
-		 if(e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
-             Player c = Bukkit.getPlayer(e.getCurrentItem().getItemMeta().getDisplayName().trim());
-             if(c!=null) {
-             
-                 p.teleport(c);
-             }
+		if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+			Player c = Bukkit.getPlayer(e.getCurrentItem().getItemMeta().getDisplayName().trim());
+			if (c != null) {
+
+				p.teleport(c);
+			}
 		}
 	}
 }

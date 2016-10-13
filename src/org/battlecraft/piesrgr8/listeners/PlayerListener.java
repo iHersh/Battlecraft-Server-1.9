@@ -35,6 +35,8 @@ public class PlayerListener implements Listener {
 
 	static File f = new File("plugins/BattlecraftServer/players.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
+	
+	
 
 	@EventHandler
 	public void onItemEnchant(EnchantItemEvent e) {
@@ -51,14 +53,23 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		final Player p = e.getPlayer();
-		e.setJoinMessage(p.getDisplayName() + ChatColor.DARK_GREEN + "" + ChatColor.ITALIC + " joined");
+		
+		File f1 = new File("plugins//BattlecraftServer//stats//" + p.getName() + ".yml");
+		YamlConfiguration yaml1 = YamlConfiguration.loadConfiguration(f1);
+		
+		e.setJoinMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "" + ChatColor.ITALIC + p.getName()
+				+ ChatColor.DARK_GREEN + "" + ChatColor.ITALIC + " joined");
 
 		if (p.hasPermission("bc.staff")) {
 			StaffList.player.add(p);
 		}
 		
+		if (yaml1.contains(p.getName() + ".nick")) {
+			p.setDisplayName("*" + ChatColor.translateAlternateColorCodes('&', yaml.getString(p.getName() + ".nick")));
+		}
+
 		StatsManager.createStats(p);
-		
+
 		PlayerTp.players.add(p.getName());
 		motd(p);
 
@@ -105,7 +116,8 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		e.setQuitMessage(p.getDisplayName() + ChatColor.DARK_RED + "" + ChatColor.ITALIC + " left");
+		e.setQuitMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "" + ChatColor.ITALIC + p.getName()
+				+ ChatColor.DARK_RED + "" + ChatColor.ITALIC + " left");
 		PlayerTp.players.remove(p.getName());
 		if (p.hasPermission("bc.staff")) {
 			StaffList.player.remove(p);
@@ -123,10 +135,13 @@ public class PlayerListener implements Listener {
 		int on = Bukkit.getServer().getOnlinePlayers().size();
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&',
 				"&7&l&m>&c&m--------&7&m&l[&6&m--------&7&m&l[&f &c&lBATTLECRAFT &7&m&l]&6&m--------&7&l&m]&c&m---------&7&l&m<"));
-		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &lWelcome, " + p.getDisplayName() + "!"));
+		p.sendMessage(
+				ChatColor.translateAlternateColorCodes('&', "             &lWelcome, " + p.getDisplayName() + "!"));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &6&lGo to a portal to get started!"));
-		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &lType &a&l/help&r&l for a list of commands."));
-		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &lType &a&l/list&r&l to see who else is online."));
+		p.sendMessage(ChatColor.translateAlternateColorCodes('&',
+				"             &lType &a&l/help&r&l for a list of commands."));
+		p.sendMessage(ChatColor.translateAlternateColorCodes('&',
+				"             &lType &a&l/list&r&l to see who else is online."));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &lPlayers online:&a&l " + on + "&r"));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "             &lEnjoy your stay!"));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&',

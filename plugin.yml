@@ -1,6 +1,6 @@
 name: BattlecraftServer
 main: org.battlecraft.piesrgr8.BattlecraftServer
-version: 1.5, 1.9
+version: 1.5.3, 1.9
 author: Piesrgr8
 description: This plugin is for the Battlecraft Server.
 
@@ -15,6 +15,9 @@ commands:
     description: Clear your inventory.
   death:
     description: Kill yourself.
+    aliases: [kill,suicide,smite]
+  enchant:
+    description: Enchant an item.
   enderchest:
     description: Open players inventory.
     aliases: [ec,echest,enderc]
@@ -62,7 +65,7 @@ commands:
     description: Shows the menu for teleporting.
   mute:
     description: Mute players.
-  nickname:
+  nick:
     description: Set a nickname for yourself.
   particle:
     description: Get particles.

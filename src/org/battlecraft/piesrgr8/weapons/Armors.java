@@ -66,8 +66,8 @@ public class Armors implements CommandExecutor {
 							+ "LEGENDARY" + ChatColor.DARK_PURPLE + "] " + ChatColor.RED + "" + ChatColor.BOLD
 							+ "Man of Steel");
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						((CraftPlayer) player).getHandle().playerConnection
-								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
+						((CraftPlayer) player).getHandle().playerConnection.sendPacket(
+								new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
 										player.getLocation().getBlockX(), player.getLocation().getBlockY(),
 										player.getLocation().getBlockZ(), 100000.0F, 1.0F));
 					}
@@ -91,8 +91,8 @@ public class Armors implements CommandExecutor {
 							+ "LEGENDARY" + ChatColor.DARK_PURPLE + "] " + ChatColor.RED + "" + ChatColor.BOLD
 							+ "Black Diamond");
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						((CraftPlayer) player).getHandle().playerConnection
-								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
+						((CraftPlayer) player).getHandle().playerConnection.sendPacket(
+								new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
 										player.getLocation().getBlockX(), player.getLocation().getBlockY(),
 										player.getLocation().getBlockZ(), 100000.0F, 1.0F));
 					}
@@ -127,14 +127,13 @@ public class Armors implements CommandExecutor {
 					}
 					pi.addItem(three);
 				}
-				
+
 				if (args[0].equalsIgnoreCase("r2")) {
 					Player p = (Player) sender;
 					PlayerInventory pi = p.getInventory();
 					ItemStack four = setMeta(new ItemStack(Material.IRON_HELMET),
 							ChatColor.DARK_PURPLE + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "RARE"
-									+ ChatColor.DARK_PURPLE + "] " + ChatColor.GOLD + "" + ChatColor.BOLD
-									+ "Boche",
+									+ ChatColor.DARK_PURPLE + "] " + ChatColor.GOLD + "" + ChatColor.BOLD + "Boche",
 							Arrays.asList("A helmet with just a little", "bit of power in it, that",
 									"most players would have to", "be tested to see if they are safe."));
 					four.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 3);
@@ -144,8 +143,7 @@ public class Armors implements CommandExecutor {
 							+ ChatColor.BOLD + "Boche");
 					Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + p.getName() + ChatColor.GOLD
 							+ " recieved the " + ChatColor.DARK_PURPLE + "[" + ChatColor.GOLD + "" + ChatColor.BOLD
-							+ "RARE" + ChatColor.DARK_PURPLE + "] " + ChatColor.GOLD + "" + ChatColor.BOLD
-							+ "Boche");
+							+ "RARE" + ChatColor.DARK_PURPLE + "] " + ChatColor.GOLD + "" + ChatColor.BOLD + "Boche");
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						((CraftPlayer) player).getHandle().playerConnection
 								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.rare", SoundCategory.MASTER,

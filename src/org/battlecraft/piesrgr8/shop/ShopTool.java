@@ -16,14 +16,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class ShopTool implements Listener{
-	
+public class ShopTool implements Listener {
+
 	BattlecraftServer plugin;
-	
+
 	public ShopTool(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static void openGUI(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 54, ChatColor.YELLOW + "Shop - Tools");
@@ -47,7 +47,7 @@ public class ShopTool implements Listener{
 
 		ItemStack custom = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLACK.getData());
 		ItemMeta custom1 = custom.getItemMeta();
-		
+
 		ItemStack back = new ItemStack(Material.ARROW);
 		ItemMeta back1 = back.getItemMeta();
 
@@ -55,28 +55,33 @@ public class ShopTool implements Listener{
 		// to the inventory.
 
 		main1.setDisplayName(ChatColor.YELLOW + "Pickaxes");
-		main1.setLore(Arrays.asList(ChatColor.YELLOW + "All pickaxes!", ChatColor.GRAY + "Ex: Iron pickaxe, Diamond pickaxe."));
+		main1.setLore(Arrays.asList(ChatColor.YELLOW + "All pickaxes!",
+				ChatColor.GRAY + "Ex: Iron pickaxe, Diamond pickaxe."));
 		main.setItemMeta(main1);
 
 		mg1.setDisplayName(ChatColor.YELLOW + "Axes");
-		mg1.setLore(Arrays.asList(ChatColor.YELLOW + "All axes!", ChatColor.GRAY + "Ex: Iron axe, Wooden axe, Diamond axe."));
+		mg1.setLore(Arrays.asList(ChatColor.YELLOW + "All axes!",
+				ChatColor.GRAY + "Ex: Iron axe, Wooden axe, Diamond axe."));
 		mg.setItemMeta(mg1);
 
 		sw1.setDisplayName(ChatColor.YELLOW + "Shovels");
-		sw1.setLore(Arrays.asList(ChatColor.YELLOW + "All shovels!", ChatColor.GRAY + "Ex: Golden shovel, Iron shovel."));
+		sw1.setLore(
+				Arrays.asList(ChatColor.YELLOW + "All shovels!", ChatColor.GRAY + "Ex: Golden shovel, Iron shovel."));
 		sw.setItemMeta(sw1);
 
 		hg1.setDisplayName(ChatColor.YELLOW + "Other");
-		hg1.setLore(Arrays.asList(ChatColor.YELLOW + "Tools with different purposes!", ChatColor.GRAY + "Ex: Compass, Clock, Shears."));
+		hg1.setLore(Arrays.asList(ChatColor.YELLOW + "Tools with different purposes!",
+				ChatColor.GRAY + "Ex: Compass, Clock, Shears."));
 		hg.setItemMeta(hg1);
 
 		fc1.setDisplayName(ChatColor.YELLOW + "Enchanted Books");
-		fc1.setLore(Arrays.asList(ChatColor.YELLOW + "Tool enchantments", ChatColor.GRAY + "Ex: Just enchanted books only for tools!"));
+		fc1.setLore(Arrays.asList(ChatColor.YELLOW + "Tool enchantments",
+				ChatColor.GRAY + "Ex: Just enchanted books only for tools!"));
 		fc.setItemMeta(fc1);
-		
+
 		back1.setDisplayName(ChatColor.RED + "Back");
 		back.setItemMeta(back1);
-		
+
 		custom1.setDisplayName(" ");
 		custom.setItemMeta(custom1);
 
@@ -151,7 +156,7 @@ public class ShopTool implements Listener{
 
 		p.openInventory(inv);
 	}
-	
+
 	@EventHandler
 	public void onInventoryClick1(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Shop - Tools"))
@@ -186,11 +191,11 @@ public class ShopTool implements Listener{
 		case ENCHANTED_BOOK:
 			TitleManager.sendActionBar(p, ChatColor.RED + "This is not available in BETA!", 30);
 			break;
-			
+
 		case ARROW:
 			Shop.openGUI(p);
 			break;
-			
+
 		default:
 			e.setCancelled(true);
 			break;

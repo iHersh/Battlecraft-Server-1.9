@@ -15,8 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.milkbowl.vault.economy.EconomyResponse;
-
 public class ShopMaterialWood implements Listener {
 
 	BattlecraftServer plugin;
@@ -169,37 +167,12 @@ public class ShopMaterialWood implements Listener {
 	public void onInventoryClick1(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Shop - Wood"))
 			return;
-
-		Player p = (Player) e.getWhoClicked();
-		Inventory inv = p.getInventory();
 		e.setCancelled(true);
 
 		if (e.getCurrentItem() == null || e.getCurrentItem().getType().equals(Material.AIR)
 				|| !e.getCurrentItem().hasItemMeta()) {
 			e.setCancelled(true);
 			return;
-		}
-
-		switch (e.getCurrentItem().getType()) {
-		case WOOD:
-			EconomyResponse r = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal = BattlecraftServer.econ.getBalance(p);
-			if (bal >= 2.50 && r.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.WOOD));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "wood " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-
-		case ARROW:
-			ShopMaterial.openGUI(p);
-			break;
-
-		default:
-			e.setCancelled(true);
-			break;
 		}
 	}
 }

@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 public class Report implements CommandExecutor {
-	
+
 	static File f = new File("plugins/BattlecraftServer/reports.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 
@@ -36,15 +36,16 @@ public class Report implements CommandExecutor {
 
 			Player tar = Bukkit.getServer().getPlayer(args[0]);
 			if (args.length == 1) {
-					if (tar == null) {
-						p.sendMessage(bg + ChatColor.RED + "This player isnt online. If you are reporting this player, remind staff!");
-						return true;
-					}
-					if (tar.getName().equalsIgnoreCase(args[0])) {
-						p.sendMessage(bg + ChatColor.RED + "Please continue the report. "
-								+ "Having their name only will not help us with the report.");
-						return true;
-					}
+				if (tar == null) {
+					p.sendMessage(bg + ChatColor.RED
+							+ "This player isnt online. If you are reporting this player, remind staff!");
+					return true;
+				}
+				if (tar.getName().equalsIgnoreCase(args[0])) {
+					p.sendMessage(bg + ChatColor.RED + "Please continue the report. "
+							+ "Having their name only will not help us with the report.");
+					return true;
+				}
 			}
 
 			if (args.length >= 2) {
@@ -71,7 +72,7 @@ public class Report implements CommandExecutor {
 				}
 				return true;
 			}
-			}
+		}
 		return true;
 	}
 }

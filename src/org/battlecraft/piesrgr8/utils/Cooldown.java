@@ -8,18 +8,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class Cooldown {
-	
+
 	public static HashMap<Player, Integer> cooldownTime;
 	public static HashMap<Player, BukkitRunnable> cooldownTask;
-	
+
 	BattlecraftServer plugin;
-	
+
 	public Cooldown(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public static void cooldownMessage(Player p) {
-			p.sendMessage(BattlecraftServer.prefixCooldown + ChatColor.RED + "You must wait " + ChatColor.YELLOW
-					+ Cooldown.cooldownTime.get(p) + ChatColor.YELLOW + " seconds!");
+		p.sendMessage(BattlecraftServer.prefixCooldown + ChatColor.RED + "You must wait " + ChatColor.YELLOW
+				+ Cooldown.cooldownTime.get(p) + ChatColor.YELLOW + " seconds!");
 	}
 }

@@ -2,7 +2,6 @@ package org.battlecraft.piesrgr8.hub;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.battlecraft.piesrgr8.essentials.PlayerTp;
-import org.battlecraft.piesrgr8.shop.Shop;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,14 +16,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Menus implements Listener, CommandExecutor{
-	
+public class Menus implements Listener, CommandExecutor {
+
 	BattlecraftServer plugin;
 
 	public Menus(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	public static void openGUI(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Menu");
 
@@ -87,9 +86,9 @@ public class Menus implements Listener, CommandExecutor{
 		case BRICK:
 			Hub.openGUI(p);
 			break;
-			
+
 		case IRON_PICKAXE:
-			Shop.openGUI(p);
+			p.sendMessage(BattlecraftServer.prefixMain + "Removed! New shop coming soon");
 			break;
 
 		case ENDER_CHEST:
@@ -105,13 +104,13 @@ public class Menus implements Listener, CommandExecutor{
 			break;
 		}
 	}
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("menu")) {
 			Player p = (Player) sender;
-				openGUI(p);
-				return true;
-			}
+			openGUI(p);
+			return true;
+		}
 		return false;
 	}
 }

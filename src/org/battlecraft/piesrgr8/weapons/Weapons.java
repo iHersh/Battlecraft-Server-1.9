@@ -23,9 +23,9 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Weapons implements CommandExecutor {
-	
+
 	BattlecraftServer plugin;
-	
+
 	public Weapons(BattlecraftServer p) {
 		this.plugin = p;
 	}
@@ -75,14 +75,13 @@ public class Weapons implements CommandExecutor {
 							+ " has the " + ChatColor.DARK_PURPLE + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "RARE"
 							+ ChatColor.DARK_PURPLE + "] " + ChatColor.RED + "" + ChatColor.BOLD + "Death Dealer");
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						((CraftPlayer) player).getHandle().playerConnection
-								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
+						((CraftPlayer) player).getHandle().playerConnection.sendPacket(
+								new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
 										player.getLocation().getBlockX(), player.getLocation().getBlockY(),
 										player.getLocation().getBlockZ(), 100000.0F, 1.0F));
 
 					}
 					pi.addItem(newItem);
-					new Misc1(newItem, WeapTypes.LEGENDARY);
 				}
 
 				if (args[0].equalsIgnoreCase("leg2")) {
@@ -102,13 +101,12 @@ public class Weapons implements CommandExecutor {
 							+ " has the " + ChatColor.DARK_PURPLE + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "RARE"
 							+ ChatColor.DARK_PURPLE + "] " + ChatColor.RED + "" + ChatColor.BOLD + "The Black Blade");
 					for (Player player : Bukkit.getOnlinePlayers()) {
-						((CraftPlayer) player).getHandle().playerConnection
-								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
+						((CraftPlayer) player).getHandle().playerConnection.sendPacket(
+								new PacketPlayOutCustomSoundEffect("gotitem.legendary", SoundCategory.MASTER,
 										player.getLocation().getBlockX(), player.getLocation().getBlockY(),
 										player.getLocation().getBlockZ(), 100000.0F, 1.0F));
 					}
 					pi.addItem(newItem);
-					new Misc1(newItem, WeapTypes.LEGENDARY);
 				}
 
 				if (args[0].equalsIgnoreCase("ex1")) {
@@ -130,12 +128,14 @@ public class Weapons implements CommandExecutor {
 								.sendPacket(new PacketPlayOutCustomSoundEffect("gotitem.rank", SoundCategory.MASTER,
 										player.getLocation().getBlockX(), player.getLocation().getBlockY(),
 										player.getLocation().getBlockZ(), 100000.0F, 1.0F));
-						PacketUtil.sendTitle(plugin, player, ChatColor.DARK_RED + "" + ChatColor.BOLD + p.getName() + ChatColor.RED 
-								+ " earned an EXOTIC item!", ChatColor.YELLOW + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "EXOTIC"
-										+ ChatColor.YELLOW + "] " + ChatColor.RED + "" + ChatColor.BOLD + "Bread and Butter");
+						PacketUtil.sendTitle(plugin, player,
+								ChatColor.DARK_RED + "" + ChatColor.BOLD + p.getName() + ChatColor.RED
+										+ " earned an EXOTIC item!",
+								ChatColor.YELLOW + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "EXOTIC"
+										+ ChatColor.YELLOW + "] " + ChatColor.RED + "" + ChatColor.BOLD
+										+ "Bread and Butter");
 					}
 					pi.addItem(newItem);
-					new Misc1(newItem, WeapTypes.EXOTIC);
 				}
 
 				// ************************************************************
@@ -168,9 +168,8 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(karaBela);
-					new Misc1(karaBela, WeapTypes.RARE);
 				}
-				
+
 				if (args[0].equalsIgnoreCase("rb")) {
 					Player p = (Player) sender;
 					PlayerInventory pi = p.getInventory();
@@ -198,7 +197,6 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(sharpShooter);
-					new Misc1(sharpShooter, WeapTypes.RARE);
 				}
 				// ************************************************************
 				// ******************** COMMON TYPE ITEMS *********************
@@ -224,7 +222,6 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(magnitudeSword);
-					new Misc1(magnitudeSword, WeapTypes.UNCOMMON);
 				}
 
 				if (args[0].equalsIgnoreCase("uc2")) {
@@ -248,7 +245,6 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(coreGreen);
-					new Misc1(coreGreen, WeapTypes.UNCOMMON);
 				}
 
 				// ************************************************************
@@ -275,7 +271,6 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(vikingSword);
-					new Misc1(vikingSword, WeapTypes.COMMON);
 				}
 
 				if (args[0].equalsIgnoreCase("c2")) {
@@ -298,9 +293,8 @@ public class Weapons implements CommandExecutor {
 
 					}
 					pi.addItem(longSword);
-					new Misc1(longSword, WeapTypes.COMMON);
 				}
-			}else{
+			} else {
 				Player p = (Player) sender;
 				p.sendMessage(BattlecraftServer.prefixWeapons + ChatColor.RED + "That weapon doesn't exist!");
 			}

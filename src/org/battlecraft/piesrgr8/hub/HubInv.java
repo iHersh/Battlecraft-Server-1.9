@@ -9,28 +9,28 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class HubInv {
-	
+
 	public static void hubInv(Player p) {
 		Inventory inv = p.getInventory();
-		
+
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
-		
+
 		ItemStack ns = new ItemStack(Material.NETHER_STAR);
 		ItemMeta meta = ns.getItemMeta();
-		
+
 		ItemStack ns1 = new ItemStack(Material.END_CRYSTAL);
 		ItemMeta meta1 = ns1.getItemMeta();
-		
+
 		meta.setDisplayName(ChatColor.YELLOW + "Game Selector");
 		ns.setItemMeta(meta);
-		
+
 		meta1.setDisplayName(ChatColor.BLUE + "Quick Game");
 		ns1.setItemMeta(meta1);
-		
+
 		if (inv.contains(ns1) && inv.contains(ns) && inv.contains(book)) {
 			return;
 		}
-		
+
 		inv.addItem(ns);
 		inv.addItem(Rulebook.rulebook(p));
 		inv.addItem(ns1);

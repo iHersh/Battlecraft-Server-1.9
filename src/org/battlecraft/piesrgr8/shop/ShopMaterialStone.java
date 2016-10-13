@@ -15,10 +15,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.milkbowl.vault.economy.EconomyResponse;
+public class ShopMaterialStone implements Listener {
 
-public class ShopMaterialStone implements Listener{
-	
 	BattlecraftServer plugin;
 
 	public ShopMaterialStone(BattlecraftServer p) {
@@ -49,18 +47,18 @@ public class ShopMaterialStone implements Listener{
 		byte stoneType1 = 1;
 		ItemStack block6 = new ItemStack(Material.SMOOTH_BRICK, 1, stoneType1);
 		ItemMeta block_6 = block5.getItemMeta();
-		
+
 		byte stoneType2 = 2;
 		ItemStack block7 = new ItemStack(Material.SMOOTH_BRICK, 1, stoneType2);
 		ItemMeta block_7 = block5.getItemMeta();
-		
+
 		byte stoneType3 = 3;
 		ItemStack block8 = new ItemStack(Material.SMOOTH_BRICK, 1, stoneType3);
 		ItemMeta block_8 = block5.getItemMeta();
-		
+
 		ItemStack block9 = new ItemStack(Material.SANDSTONE);
 		ItemMeta block_9 = block5.getItemMeta();
-		
+
 		ItemStack block10 = new ItemStack(Material.RED_SANDSTONE);
 		ItemMeta block_10 = block5.getItemMeta();
 
@@ -96,19 +94,19 @@ public class ShopMaterialStone implements Listener{
 		block_6.setDisplayName(ChatColor.YELLOW + "Mossy Stone Bricks");
 		block_6.setLore(Arrays.asList(ChatColor.GREEN + "Price: " + ChatColor.GOLD + "$2.50"));
 		block6.setItemMeta(block_6);
-		
+
 		block_7.setDisplayName(ChatColor.YELLOW + "Cracked Stone Bricks");
 		block_7.setLore(Arrays.asList(ChatColor.GREEN + "Price: " + ChatColor.GOLD + "$2.50"));
 		block7.setItemMeta(block_7);
-		
+
 		block_8.setDisplayName(ChatColor.YELLOW + "Chiseled Stone Bricks");
 		block_8.setLore(Arrays.asList(ChatColor.GREEN + "Price: " + ChatColor.GOLD + "$2.50"));
 		block8.setItemMeta(block_8);
-		
+
 		block_9.setDisplayName(ChatColor.YELLOW + "Sandstone");
 		block_9.setLore(Arrays.asList(ChatColor.GREEN + "Price: " + ChatColor.GOLD + "$2.50"));
 		block9.setItemMeta(block_9);
-		
+
 		block_10.setDisplayName(ChatColor.YELLOW + "Red Sandstone");
 		block_10.setLore(Arrays.asList(ChatColor.GREEN + "Price: " + ChatColor.GOLD + "$2.50"));
 		block10.setItemMeta(block_10);
@@ -195,109 +193,12 @@ public class ShopMaterialStone implements Listener{
 	public void onInventoryClick1(InventoryClickEvent e) {
 		if (!ChatColor.stripColor(e.getInventory().getName()).equalsIgnoreCase("Shop - Stone"))
 			return;
-
-		Player p = (Player) e.getWhoClicked();
-		Inventory inv = p.getInventory();
 		e.setCancelled(true);
 
 		if (e.getCurrentItem() == null || e.getCurrentItem().getType().equals(Material.AIR)
 				|| !e.getCurrentItem().hasItemMeta()) {
 			e.setCancelled(true);
 			return;
-		}
-
-		switch (e.getCurrentItem().getType()) {
-		case STONE:
-			EconomyResponse r = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal = BattlecraftServer.econ.getBalance(p);
-			if (bal >= 2.50 && r.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.STONE));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "stone " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-			
-		case COBBLESTONE:
-			EconomyResponse r1 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal1 = BattlecraftServer.econ.getBalance(p);
-			if (bal1 >= 2.50 && r1.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.COBBLESTONE));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "cobblestone " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-		
-		case MOSSY_COBBLESTONE:
-			EconomyResponse r2 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal2 = BattlecraftServer.econ.getBalance(p);
-			if (bal2 >= 2.50 && r2.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.MOSSY_COBBLESTONE));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "mossy cobblestone " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-			
-		case BRICK:
-			EconomyResponse r3 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal3 = BattlecraftServer.econ.getBalance(p);
-			if (bal3 >= 2.50 && r3.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.BRICK));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "brick " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-			
-		case SMOOTH_BRICK:
-			EconomyResponse r4 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal4 = BattlecraftServer.econ.getBalance(p);
-			if (bal4 >= 2.50 && r4.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.SMOOTH_BRICK));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "stone bricks " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-			
-		case SANDSTONE:
-			EconomyResponse r5 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal5 = BattlecraftServer.econ.getBalance(p);
-			if (bal5 >= 2.50 && r5.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.SANDSTONE));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "sandstone " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-			
-		case RED_SANDSTONE:
-			EconomyResponse r6 = BattlecraftServer.econ.withdrawPlayer(p, 2.50);
-			double bal6 = BattlecraftServer.econ.getBalance(p);
-			if (bal6 >= 2.50 && r6.transactionSuccess()) {
-				inv.addItem(new ItemStack(Material.RED_SANDSTONE));
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.GREEN + "You have bought " + ChatColor.YELLOW
-						+ "red sandstone " + ChatColor.GREEN + "for " + ChatColor.GOLD + "$2.50");
-			} else {
-				p.sendMessage(BattlecraftServer.prefixShop + ChatColor.RED + "You are low on funds!");
-			}
-			break;
-
-		case ARROW:
-			ShopMaterial.openGUI(p);
-			break;
-
-		default:
-			e.setCancelled(true);
-			break;
 		}
 	}
 

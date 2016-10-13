@@ -1,6 +1,6 @@
 package org.battlecraft.piesrgr8.utils;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.ChatColor;
@@ -21,8 +21,8 @@ public class Test implements Listener, CommandExecutor {
 
 	BattlecraftServer plugin;
 
-	public static ArrayList<ItemStack> list = new ArrayList<>();
-	
+	public static HashMap<Player, ItemStack> list = new HashMap<Player, ItemStack>();
+
 	public Test(BattlecraftServer p) {
 		this.plugin = p;
 	}
@@ -39,10 +39,17 @@ public class Test implements Listener, CommandExecutor {
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
+		if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			return;
+		}
+		
 		if (e.getClickedBlock().getState() instanceof Sign) {
 			Sign s = (Sign) e.getClickedBlock().getState();
+			
+			if (!s.getLine(0).contains(ChatColor.stripColor("BUY"))) {
+				return ;
+			}
+			
 			try {
 				p.getInventory().addItem(new ItemStack(Material.getMaterial(s.getLine(1))));
 				p.sendMessage("You bought a(n) " + Material.getMaterial(s.getLine(1)));
@@ -50,7 +57,7 @@ public class Test implements Listener, CommandExecutor {
 				p.sendMessage("Item doesnt exist!");
 				e1.printStackTrace();
 			}
-				list.add(new ItemStack(Material.getMaterial(s.getLine(1))));
+			list.put(p, new ItemStack(Material.getMaterial(s.getLine(1))));
 		}
 	}
 
@@ -63,7 +70,7 @@ public class Test implements Listener, CommandExecutor {
 
 			if (args.length == 0) {
 				sender.sendMessage("This class is testing buy signs and sell signs!");
-				sender.sendMessage("ItemStack Size: " + list.size());
+				sender.sendMessage("ItemStack Size: " + list.get(sender));
 				return true;
 			}
 		}

@@ -11,111 +11,115 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Gamemode implements CommandExecutor{
-	
+public class Gamemode implements CommandExecutor {
+
 	String prefix = BattlecraftServer.prefixGamemode;
 
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-   if (cmd.getName().equalsIgnoreCase("g0")) {
+		if (cmd.getName().equalsIgnoreCase("g0")) {
 			Player p = (Player) sender;
-		    if(!p.hasPermission("bc.gamemode0")) {
-		    	p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
-		    	return true;
-		    }
-		    if (args.length == 0) {
-		    	p.setGameMode(GameMode.SURVIVAL);
-				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-				p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS");
-				return true;
-		    }
-		    Player target = Bukkit.getServer().getPlayer(args[0]);
-		    if(args.length == 1) {
-		    if(target==null) {
-		    	p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
-		    	return true;
-		    }
-		    if (target.getName().equalsIgnoreCase(args[0])) {
-		    	target.setGameMode(GameMode.SURVIVAL);
-		    	p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-		    	p.sendMessage(prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in survival!");
-		    	target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-		    	target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to " + ChatColor.GREEN + "" + ChatColor.BOLD + "SURVIVAL!");
-		    }
-   }
-  }
- 
-	if (cmd.getName().equalsIgnoreCase("g1")) {
-			Player p = (Player) sender;
-			if(!p.hasPermission("bc.gamemode1")) {
+			if (!p.hasPermission("bc.gamemode0")) {
 				p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
 				return true;
 			}
-    if (args.length == 0) {
-    	p.setGameMode(GameMode.CREATIVE);
-		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-		p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS");
-		return true;
-    }
-    Player target = Bukkit.getServer().getPlayer(args[0]);
-    if(args.length == 1) {
-    if(target==null) {
-    	p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
-    	return true;
-    }
-    if (target.getName().equalsIgnoreCase(args[0])) {
-    	target.setGameMode(GameMode.CREATIVE);
-    	p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-    	p.sendMessage(prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in creative!");
-    	target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-    	target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to " + ChatColor.GREEN + "" + ChatColor.BOLD + "CREATIVE!");
-    }
-}
-}
-
-			
-			if (cmd.getName().equalsIgnoreCase("g2")) {
-				Player p = (Player) sender;
-			    if(!p.hasPermission("bc.gamemode2")) {
-			    	p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
-			    	return true;
-			    }
-		    if (args.length == 0) {
-		    	p.setGameMode(GameMode.ADVENTURE);
+			if (args.length == 0) {
+				p.setGameMode(GameMode.SURVIVAL);
 				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
 				p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS");
 				return true;
-		    }
-		    Player target = Bukkit.getServer().getPlayer(args[0]);
-		    if(args.length == 1) {
-		    if(target==null) {
-		    	p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
-		    	return true;
-		    }
-		    if (target.getName().equalsIgnoreCase(args[0])) {
-		    	target.setGameMode(GameMode.ADVENTURE);
-		    	p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-		    	p.sendMessage(prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in adventure!");
-		    	target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-		    	target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to " + ChatColor.GREEN + "" + ChatColor.BOLD + "ADVENTURE!");
-		    }
-   }
-  }
-
-			    
-			if (cmd.getName().equalsIgnoreCase("g3")) {
-				Debug.debugBroadcast("Player executed Spectator!");
-				Player p = (Player) sender;
-			    if(!p.hasPermission("bc.gamemode3")) {
-			    	p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
-			    	return true;
-			    }
-				p.setGameMode(GameMode.SPECTATOR);
-				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
-				p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS" + ChatColor.RESET + "-"
-						+ " " + ChatColor.GOLD + "Welcome to spectator mode!");
-				return true;
+			}
+			Player target = Bukkit.getServer().getPlayer(args[0]);
+			if (args.length == 1) {
+				if (target == null) {
+					p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
+					return true;
+				}
+				if (target.getName().equalsIgnoreCase(args[0])) {
+					target.setGameMode(GameMode.SURVIVAL);
+					p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					p.sendMessage(
+							prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in survival!");
+					target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to "
+							+ ChatColor.GREEN + "" + ChatColor.BOLD + "SURVIVAL!");
+				}
+			}
 		}
+
+		if (cmd.getName().equalsIgnoreCase("g1")) {
+			Player p = (Player) sender;
+			if (!p.hasPermission("bc.gamemode1")) {
+				p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
+				return true;
+			}
+			if (args.length == 0) {
+				p.setGameMode(GameMode.CREATIVE);
+				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+				p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS");
+				return true;
+			}
+			Player target = Bukkit.getServer().getPlayer(args[0]);
+			if (args.length == 1) {
+				if (target == null) {
+					p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
+					return true;
+				}
+				if (target.getName().equalsIgnoreCase(args[0])) {
+					target.setGameMode(GameMode.CREATIVE);
+					p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					p.sendMessage(
+							prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in creative!");
+					target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to "
+							+ ChatColor.GREEN + "" + ChatColor.BOLD + "CREATIVE!");
+				}
+			}
+		}
+
+		if (cmd.getName().equalsIgnoreCase("g2")) {
+			Player p = (Player) sender;
+			if (!p.hasPermission("bc.gamemode2")) {
+				p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
+				return true;
+			}
+			if (args.length == 0) {
+				p.setGameMode(GameMode.ADVENTURE);
+				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+				p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS");
+				return true;
+			}
+			Player target = Bukkit.getServer().getPlayer(args[0]);
+			if (args.length == 1) {
+				if (target == null) {
+					p.sendMessage(prefix + ChatColor.RED + "That player isn't on the server!");
+					return true;
+				}
+				if (target.getName().equalsIgnoreCase(args[0])) {
+					target.setGameMode(GameMode.ADVENTURE);
+					p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					p.sendMessage(
+							prefix + ChatColor.GREEN + target.getName() + ChatColor.GREEN + " is now in adventure!");
+					target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+					target.sendMessage(prefix + ChatColor.GREEN + p.getName() + " has changed your gamemode to "
+							+ ChatColor.GREEN + "" + ChatColor.BOLD + "ADVENTURE!");
+				}
+			}
+		}
+
+		if (cmd.getName().equalsIgnoreCase("g3")) {
+			Debug.debugBroadcast("Player executed Spectator!");
+			Player p = (Player) sender;
+			if (!p.hasPermission("bc.gamemode3")) {
+				p.sendMessage(prefix + ChatColor.RED + "You don't have permission to change your gamemode!");
+				return true;
+			}
+			p.setGameMode(GameMode.SPECTATOR);
+			p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+			p.sendMessage(prefix + ChatColor.GREEN + "" + ChatColor.BOLD + "SUCCESS" + ChatColor.RESET + "-" + " "
+					+ ChatColor.GOLD + "Welcome to spectator mode!");
 			return true;
-    }
+		}
+		return true;
+	}
 }

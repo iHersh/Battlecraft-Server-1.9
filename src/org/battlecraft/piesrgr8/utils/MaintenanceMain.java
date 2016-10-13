@@ -14,17 +14,19 @@ public class MaintenanceMain {
 
 	public static void startMaintenance() {
 		Bukkit.getServer().setWhitelist(true);
-		
-		Bukkit.broadcastMessage(BattlecraftServer.prefixMain + ChatColor.YELLOW + "THE SERVER IS NOW IN MAINTENANCE MODE!");
+
+		Bukkit.broadcastMessage(
+				BattlecraftServer.prefixMain + ChatColor.YELLOW + "THE SERVER IS NOW IN MAINTENANCE MODE!");
 
 		// ADD MORE TO THIS METHOD!
 	}
 
 	public static void stopMaintenance() {
 		Bukkit.getServer().setWhitelist(false);
-		
-		Bukkit.broadcastMessage(BattlecraftServer.prefixMain + ChatColor.YELLOW + "THE SERVER IS NO LONGER IN MAINTENANCE MODE!");
-		
+
+		Bukkit.broadcastMessage(
+				BattlecraftServer.prefixMain + ChatColor.YELLOW + "THE SERVER IS NO LONGER IN MAINTENANCE MODE!");
+
 		// ADD MORE TO THIS METHOD!
 	}
 

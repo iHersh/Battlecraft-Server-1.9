@@ -10,25 +10,25 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public class BlockBreaks implements Listener{
-	
+public class BlockBreaks implements Listener {
+
 	BattlecraftServer plugin;
-	
+
 	public BlockBreaks(BattlecraftServer p) {
 		this.plugin = p;
 	}
-	
+
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
-		
+
 		File f = new File("plugins//BattlecraftServer//stats//" + p.getName() + ".yml");
 		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
-			yaml.set("stats.blockbreaks", yaml.getInt("stats.blockbreaks") + 1);
-			try {
-				yaml.save(f);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+		yaml.set("stats.blockbreaks", yaml.getInt("stats.blockbreaks") + 1);
+		try {
+			yaml.save(f);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }

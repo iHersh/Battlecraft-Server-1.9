@@ -7,8 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class FakeBan implements CommandExecutor{
-	
+public class FakeBan implements CommandExecutor {
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fakeb")) {
 			if (!sender.hasPermission("bc.fakeb")) {
@@ -19,13 +19,14 @@ public class FakeBan implements CommandExecutor{
 				sender.sendMessage(BattlecraftServer.prefixMain + ChatColor.RED + "Fake a ban! Just type the name!");
 				return true;
 			}
-				if (args.length == 1) {
+			if (args.length == 1) {
 				sender.sendMessage(BattlecraftServer.prefixMain + ChatColor.GREEN + "Sent successfully!");
-				Bukkit.getServer().broadcastMessage(
-						BattlecraftServer.prefixPunish + ChatColor.YELLOW + "Player " + args[0] + " has been banned by " + sender.getName() + "!");
-				
+				Bukkit.getServer().broadcastMessage(BattlecraftServer.prefixPunish + ChatColor.YELLOW + "Player "
+						+ args[0] + " has been banned by " + sender.getName() + "!");
+
 				if (!(args[0] == null)) {
-				Bukkit.getServer().broadcastMessage(ChatColor.YELLOW + "" + ChatColor.ITALIC + "" + ChatColor.BOLD + args[0] + ChatColor.DARK_RED + "" + ChatColor.ITALIC + " left");
+					Bukkit.getServer().broadcastMessage(ChatColor.YELLOW + "" + ChatColor.ITALIC + "" + ChatColor.BOLD
+							+ args[0] + ChatColor.DARK_RED + "" + ChatColor.ITALIC + " left");
 				}
 			}
 		}

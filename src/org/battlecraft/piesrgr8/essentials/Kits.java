@@ -57,7 +57,7 @@ public class Kits implements CommandExecutor {
 						Cooldown.cooldownMessage(p);
 						return true;
 					}
-					
+
 					Kit.starter(p);
 					Cooldown.cooldownTime.put(p, 3600);
 					Cooldown.cooldownTask.put(p, new BukkitRunnable() {
@@ -82,7 +82,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -111,7 +111,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -140,7 +140,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -169,7 +169,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -198,7 +198,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -227,7 +227,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -256,7 +256,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;
@@ -285,7 +285,7 @@ public class Kits implements CommandExecutor {
 								+ "You dont have permission to use this kit!");
 						return true;
 					}
-					
+
 					if (Cooldown.cooldownTime.containsKey(p)) {
 						Cooldown.cooldownMessage(p);
 						return true;

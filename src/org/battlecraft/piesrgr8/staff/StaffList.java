@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 public class StaffList {
 
 	BattlecraftServer plugin;
-	
+
 	static ArrayList<String> staff = new ArrayList<>();
 	public static ArrayList<Player> player = new ArrayList<Player>();
 
@@ -85,7 +85,7 @@ public class StaffList {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void removeStaff(Player p) {
 		yaml.set(p.getName(), null);
 		yaml.set(p.getName() + ".jobs", null);
