@@ -19,6 +19,7 @@ import org.battlecraft.piesrgr8.hub.Menus;
 import org.battlecraft.piesrgr8.hub.NavGame;
 import org.battlecraft.piesrgr8.inventory.RestoreInventory;
 import org.battlecraft.piesrgr8.listeners.BCBlockListener;
+import org.battlecraft.piesrgr8.listeners.DeathListener;
 import org.battlecraft.piesrgr8.listeners.PlayerListener;
 import org.battlecraft.piesrgr8.players.ListPlayer;
 import org.battlecraft.piesrgr8.players.Piesrgr8;
@@ -39,6 +40,7 @@ import org.battlecraft.piesrgr8.utils.Dynamicmotd;
 import org.battlecraft.piesrgr8.utils.PacketUtil;
 import org.battlecraft.piesrgr8.utils.PlayerCountMessage;
 import org.battlecraft.piesrgr8.utils.ScoreboardMg;
+import org.battlecraft.piesrgr8.utils.SignColors;
 import org.battlecraft.piesrgr8.utils.Test;
 import org.battlecraft.piesrgr8.weapons.Guns;
 import org.battlecraft.piesrgr8.world.WorldHandler;
@@ -110,6 +112,12 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 
 	public static String prefixStats = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC"
 			+ ChatColor.BLUE + "" + ChatColor.BOLD + "Stats" + ChatColor.GRAY + "] ";
+	
+	public static String prefixEnchant = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC"
+			+ ChatColor.BLUE + "" + ChatColor.BOLD + "Enchant" + ChatColor.GRAY + "] ";
+	
+	public static String prefixNick = ChatColor.GRAY + "[" + ChatColor.RED + "" + ChatColor.BOLD + "BC"
+			+ ChatColor.BLUE + "" + ChatColor.BOLD + "Nick" + ChatColor.GRAY + "] ";
 
 	public static String prefixCooldown = ChatColor.GRAY + "[" + ChatColor.DARK_RED + "" + ChatColor.BOLD + "COOLDOWN"
 			+ ChatColor.GRAY + "] ";
@@ -128,9 +136,6 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		Spawning.saveWarpYaml(this);
 		ConfigManager.saveIssueYaml(this);
 		ConfigManager.saveReportYaml(this);
-		getConfig();
-		getConfig().options().copyDefaults(true);
-		saveConfig();
 		registerEvents();
 		Commands.registerCommands(this);
 	}
@@ -147,7 +152,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Guns(this), this);
 		pm.registerEvents(new Poll(this), this);
 		pm.registerEvents(new PacketUtil(this), this);
-		// pm.registerEvents(new DeathListener(this), this);
+		pm.registerEvents(new DeathListener(this), this);
 		pm.registerEvents(new Spammer(this), this);
 		pm.registerEvents(new Test(this), this);
 		pm.registerEvents(new RestoreInventory(this), this);
@@ -158,6 +163,7 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 		pm.registerEvents(new Launchers(this), this);
 		pm.registerEvents(new Chat(this), this);
 		pm.registerEvents(new ScoreboardMg(this), this);
+		pm.registerEvents(new SignColors(this), this);
 
 		// FOR STATS
 		pm.registerEvents(new Kills(this), this);
@@ -175,7 +181,6 @@ public class BattlecraftServer extends JavaPlugin implements CommandExecutor {
 
 	@Override
 	public void onDisable() {
-		saveConfig();
 		Poll.savePollYaml(this);
 		ListPlayer.savePlayerList(this);
 		PlayerCountMessage.playerCountMessage(this);

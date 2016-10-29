@@ -57,6 +57,7 @@ public class Guns implements Listener {
 
 	@EventHandler
 	public void onShootBow(EntityShootBowEvent e) {
+		try {
 		if (!e.getBow().hasItemMeta()) {
 			return;
 		}
@@ -66,6 +67,9 @@ public class Guns implements Listener {
 		}
 		arrows.add((Projectile) e.getProjectile());
 		addParticleEffect((Projectile) e.getProjectile());
+		}catch (Exception e2) {
+			e2.getMessage();
+		}
 	}
 
 	@EventHandler

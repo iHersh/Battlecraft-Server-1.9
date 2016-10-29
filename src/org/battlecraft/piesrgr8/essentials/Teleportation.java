@@ -19,6 +19,7 @@ public class Teleportation implements CommandExecutor {
 	static File f = new File("plugins/BattlecraftServer/warps.yml");
 	static YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tp")) {
 			if (!(sender instanceof Player)) {
@@ -32,12 +33,11 @@ public class Teleportation implements CommandExecutor {
 			}
 			if (args.length == 0) {
 				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED
-						+ "Arguments are: /tp <player : coordinates : all>");
+						+ "Arguments are: /tp <player : all>");
 				return true;
 			}
-			if (args.length >= 1) {
-				for (Player tar : Bukkit.getOnlinePlayers()) {
-
+			if (args.length == 1) {
+				Player tar = Bukkit.getServer().getPlayer(args[0]);
 					if (tar == null) {
 						p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "That player isnt on the server!");
 						return true;
@@ -49,21 +49,41 @@ public class Teleportation implements CommandExecutor {
 								+ ChatColor.YELLOW + tar.getName());
 						return true;
 					}
+				
 					if (args[0].equalsIgnoreCase("all")) {
+						
 						tar.teleport(p.getLocation());
 						tar.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported everyone to "
 								+ ChatColor.YELLOW + p.getName() + "'s " + ChatColor.GREEN + "position!");
 						p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported everyone!");
 						return true;
 					}
-					World w = p.getWorld();
-					Location loc = new Location(w, Double.parseDouble(args[0]), Double.parseDouble(args[1]),
-							Double.parseDouble(args[2]));
-					p.teleport(loc);
-					p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW
-							+ args[0] + ", " + args[1] + ", " + args[2] + "!");
-					return true;
-				}
+			}
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("tpc")) {
+			if (!(sender instanceof Player)) {
+				sender.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "You are not a player!");
+				return true;
+			}
+			Player p = (Player) sender;
+			if (!p.hasPermission("bc.teleport")) {
+				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "You dont have permission to teleport.");
+				return true;
+			}
+			if (args.length == 0) {
+				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED
+						+ "Arguments are: /tp <x : y : z>");
+				return true;
+			}
+			if (args.length >= 1) {
+				World w = p.getWorld();
+				Location loc = new Location(w, Double.parseDouble(args[0]), Double.parseDouble(args[1]),
+						Double.parseDouble(args[2]));
+				p.teleport(loc);
+				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.GREEN + "Teleported to " + ChatColor.YELLOW
+						+ args[0] + ", " + args[1] + ", " + args[2] + "!");
+				return true;
 			}
 		}
 
@@ -81,8 +101,8 @@ public class Teleportation implements CommandExecutor {
 				p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "Arguments are: /tphere <player>");
 				return true;
 			}
-			if (args.length >= 1) {
-				for (Player tar : Bukkit.getOnlinePlayers()) {
+			if (args.length == 1) {
+				Player tar = Bukkit.getServer().getPlayer(args[0]);
 
 					if (tar == null) {
 						p.sendMessage(BattlecraftServer.prefixWarp + ChatColor.RED + "That player isnt on the server!");
@@ -97,7 +117,6 @@ public class Teleportation implements CommandExecutor {
 					}
 				}
 			}
-		}
 
 		if (cmd.getName().equalsIgnoreCase("setwarp")) {
 			if (!(sender instanceof Player)) {

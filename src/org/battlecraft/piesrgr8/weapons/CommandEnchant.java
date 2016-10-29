@@ -1,7 +1,7 @@
 package org.battlecraft.piesrgr8.weapons;
 
 import org.battlecraft.piesrgr8.BattlecraftServer;
-import org.battlecraft.piesrgr8.utils.Debug;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,26 +27,30 @@ public class CommandEnchant implements CommandExecutor {
 			}
 
 			if (args.length == 0) {
-				sender.sendMessage("Now hold an item in your hand and type the enchantment id and the level.");
+				sender.sendMessage(BattlecraftServer.prefixEnchant + ChatColor.YELLOW
+						+ "Now hold an item in your hand and type the enchantment id and the level.");
 				return true;
 			}
 
 			if (args.length == 1) {
-				sender.sendMessage(Enchantment.getByName(args[0]) + " - You must include a level.");
+				sender.sendMessage(BattlecraftServer.prefixEnchant + Enchantment.getByName(args[0]) + ChatColor.RED
+						+ " - You must include a level.");
 				return true;
 			}
 
 			if (args.length >= 2) {
-				Debug.debugBroadcast("Level " + args[2]);
 				Player p = (Player) sender;
 				ItemStack it = p.getInventory().getItemInHand();
-				
+
 				if (it.equals(Material.AIR)) {
-					p.sendMessage("You must be holding an item to enchant.");
+					p.sendMessage(BattlecraftServer.prefixEnchant + ChatColor.RED
+							+ "You must be holding an item to enchant.");
+					return true;
 				}
 
-				it.addUnsafeEnchantment(Enchantment.getByName(args[1]), Integer.parseInt(args[2]));
-				p.sendMessage("You have successfully enchanted an item!");
+				it.addUnsafeEnchantment(Enchantment.getByName(args[0]), Integer.parseInt(args[1]));
+				p.sendMessage(BattlecraftServer.prefixEnchant + ChatColor.GREEN
+						+ "You have successfully enchanted your " + ChatColor.YELLOW + it.getType());
 				return true;
 			}
 		}

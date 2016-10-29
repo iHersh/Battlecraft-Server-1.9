@@ -63,6 +63,7 @@ public class Commands implements CommandExecutor {
 		plugin.getCommand("fakel").setExecutor(new FakeJoin());
 		plugin.getCommand("fakeb").setExecutor(new FakeBan());
 		plugin.getCommand("fakek").setExecutor(new FakeKick());
+		plugin.getCommand("fly").setExecutor(new Fly());
 		plugin.getCommand("forceop").setExecutor(new ForceOp(plugin));
 		plugin.getCommand("g0").setExecutor(new Gamemode());
 		plugin.getCommand("g1").setExecutor(new Gamemode());
@@ -99,6 +100,7 @@ public class Commands implements CommandExecutor {
 		plugin.getCommand("tell").setExecutor(new Tell());
 		plugin.getCommand("test").setExecutor(new Test(plugin));
 		plugin.getCommand("tp").setExecutor(new Teleportation());
+		plugin.getCommand("tpc").setExecutor(new Teleportation());
 		plugin.getCommand("tphere").setExecutor(new Teleportation());
 		plugin.getCommand("unmute").setExecutor(new Unmute());
 		plugin.getCommand("vs").setExecutor(new Invisibility());

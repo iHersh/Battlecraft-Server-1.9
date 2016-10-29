@@ -36,7 +36,6 @@ public class PlayerCountMessage {
 				e.printStackTrace();
 			}
 		}
-		plugin.saveConfig();
 
 		for (String str : plugin.getConfig().getStringList("pcm")) {
 			message.add(new WrappedGameProfile("1", ChatColor.translateAlternateColorCodes('&', str)));

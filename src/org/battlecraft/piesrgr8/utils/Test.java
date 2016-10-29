@@ -70,7 +70,9 @@ public class Test implements Listener, CommandExecutor {
 
 			if (args.length == 0) {
 				sender.sendMessage("This class is testing buy signs and sell signs!");
-				sender.sendMessage("ItemStack Size: " + list.get(sender));
+				sender.sendMessage("ItemStack Recent: " + list.get(sender));
+				sender.sendMessage("ItemStack Size: " + list.get(sender).getAmount());
+				sender.sendMessage("keySet(): " + list.keySet());
 				return true;
 			}
 		}

@@ -42,14 +42,18 @@ public class Kiosk implements Listener, CommandExecutor {
 
 		// Creating the items and registering them.
 
-		for (int i = 0; i < Test.list.size(); i++) {
+		for (int i = 0; i < Test.list.keySet().size(); i++) {
 			if (i == 9) {
 				break;
 			}
-			inv.setItem(i, (ItemStack) Test.list.get(i));
+			inv.setItem(i, (ItemStack) Test.list.get(p));
 		}
-
+		
+       try {
 		p.openInventory(inv);
+       }catch (Exception e) {
+    	   p.sendMessage(BattlecraftServer.prefixShop + "You haven't bought anything!");
+       }
 	}
 
 	@EventHandler

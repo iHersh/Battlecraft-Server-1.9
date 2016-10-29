@@ -29,6 +29,8 @@ commands:
     description: Fake a ban!
   fakek:
     description: Fake a kick!
+  fly:
+    description: Use this command to fly!
   forceop:
     description: Fake an op!
   g0:
@@ -107,6 +109,8 @@ commands:
     description: Piesrgr8 tests methods with this command!
   tp:
     description: Teleportation at its finest!
+  tpc:
+    description: Teleportation at its finest!
   tphere:
     description: Teleportation at its finest!
   unmute:
@@ -130,6 +134,7 @@ permissions:
             bc.fakeb: true
             bc.fakej: true
             bc.fakel: true
+            bc.fly: true
             bc.full: true
             bc.gamemode0: true
             bc.gamemode1: true
@@ -177,6 +182,8 @@ permissions:
         description: Fake a join!
     bc.fakel:
         description: Fake a leave!
+    bc.fly:
+        description: For flying!
     bc.full:
         description: Join the server when it is currently full!
     bc.gamemode0:

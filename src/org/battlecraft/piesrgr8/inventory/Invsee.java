@@ -33,16 +33,12 @@ public class Invsee implements CommandExecutor {
 			if (args.length == 1) {
 				Player tar = Bukkit.getServer().getPlayer(args[0]);
 				Inventory inv = tar.getInventory();
-				if (!(tar == null)) {
-					p.sendMessage(BattlecraftServer.prefixInv + ChatColor.RED + "This player isnt online.");
-
-					p.sendMessage(BattlecraftServer.prefixInv + ChatColor.GREEN + tar.getName()
+				p.sendMessage(BattlecraftServer.prefixInv + ChatColor.GREEN + tar.getName()
 							+ "'s inventory has been opened!");
 					p.openInventory(inv);
 					return true;
 				}
 			}
-		}
 		return true;
 	}
 }

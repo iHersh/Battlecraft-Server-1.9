@@ -30,13 +30,18 @@ public class Particles implements CommandExecutor {
 			}
 			if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("1")) {
-					sender.sendMessage("Playing!");
+					sender.sendMessage("Played!");
 					sphere(p, true);
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("2")) {
+					sender.sendMessage("Playing!");
+					trace1(p, true);
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("stop")) {
 					sender.sendMessage("Stopped!");
-					sphere(p, false);
+					trace1(p, false);
 					return true;
 				}
 			}
@@ -47,7 +52,7 @@ public class Particles implements CommandExecutor {
 	public void sphere(Player p, boolean b) {
 		if (b) {
 			final Location loc = p.getLocation();
-			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+			Bukkit.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 				double phi = 0;
 
 				public void run() {
@@ -55,17 +60,33 @@ public class Particles implements CommandExecutor {
 					for (double theta = 0; theta <= 2 * Math.PI; theta += Math.PI / 40) {
 						double r = 1.5;
 						double x = r * Math.cos(theta) * Math.sin(phi);
-						double y = r * Math.cos(phi) + 1.5;
+						double y = r;
 						double z = r * Math.sin(theta) * Math.sin(phi);
 						loc.add(x, y, z);
 						for (Player online : Bukkit.getOnlinePlayers()) {
 							((CraftPlayer) online).getHandle().playerConnection.sendPacket(
-									new PacketPlayOutWorldParticles(EnumParticle.DRIP_WATER, true, (float) loc.getX(),
+									new PacketPlayOutWorldParticles(EnumParticle.NOTE, true, (float) loc.getX(),
 											(float) loc.getY(), (float) loc.getZ(), 0, 0, 0, (float) 1, 1, null));
 						}
 					}
 				}
 			}, 1);
+		}
+	}
+
+	public void trace1(Player p, boolean b) {
+		if (b) {
+			final Location loc = p.getLocation();
+			Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+
+				public void run() {
+					for (Player online : Bukkit.getOnlinePlayers()) {
+						((CraftPlayer) online).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(
+								EnumParticle.ENCHANTMENT_TABLE, true, (float) loc.getX(), (float) loc.getY(),
+								(float) loc.getZ(), 0, 0, 0, (float) 1, 1, null));
+					}
+				}
+			}, 1, 10);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package org.battlecraft.piesrgr8.essentials;
 import java.io.File;
 import java.io.IOException;
 
+import org.battlecraft.piesrgr8.BattlecraftServer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,12 +24,12 @@ public class Nick implements CommandExecutor {
 			}
 			Player p = (Player) sender;
 			if (!p.hasPermission("bc.nick")) {
-				p.sendMessage("You dont have permission to set your nickname");
+				p.sendMessage(BattlecraftServer.prefixNick + ChatColor.RED + "You dont have permission to set your nickname");
 				return true;
 			}
 
 			if (args.length == 0) {
-				p.sendMessage("What will be your nickname?");
+				p.sendMessage(BattlecraftServer.prefixNick + ChatColor.YELLOW + "What will be your nickname?");
 				return true;
 			}
 
@@ -37,8 +38,9 @@ public class Nick implements CommandExecutor {
 				for (String message : args) {
 					bc = (bc + message + "");
 				}
-				
-				p.setDisplayName("*" + ChatColor.translateAlternateColorCodes('&', yaml.getString(p.getName() + ".nick")));
+
+				p.setDisplayName(
+						"*" + ChatColor.translateAlternateColorCodes('&', yaml.getString(p.getName() + ".nick")));
 
 				if (!yaml.contains(p.getName() + ".nick")) {
 					yaml.createSection(p.getName() + ".nick");
@@ -50,8 +52,9 @@ public class Nick implements CommandExecutor {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				p.sendMessage("Successfully set nick name! Your nick is now " + p.getDisplayName());
-				p.sendMessage("Loggout or do this command again if your nick doesnt appear.");
+				p.sendMessage(BattlecraftServer.prefixNick + ChatColor.GREEN
+						+ "Successfully set nick name! Your nick is now " + p.getDisplayName());
+				p.sendMessage(ChatColor.YELLOW + "Loggout or do this command again if your nick doesnt appear.");
 				return true;
 			}
 		}
