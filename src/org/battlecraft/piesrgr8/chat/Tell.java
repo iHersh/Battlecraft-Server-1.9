@@ -35,10 +35,9 @@ public class Tell implements CommandExecutor {
 			if (args.length > 2) {
 				String bc = "";
 				for (String message : args) {
-					if (bc == sender.getName() || bc == tar.getName()) {
-						continue;
+					if (bc != sender.getName() || bc != tar.getName()) {
+						bc = (bc + message + " ");
 					}
-					bc = (bc + message + " ");
 				}
 
 				String msg1 = ChatColor.GOLD + "" + ChatColor.BOLD + "[" + ChatColor.YELLOW + "" + ChatColor.BOLD
